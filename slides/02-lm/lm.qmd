@@ -37,7 +37,7 @@ library(faraway)
 
 ## GA 2000 US Presidential Election Data
 
-The `gavote` data contains the voting data of Georgia (GA) in the 2000 presidential election. It is available as a dataframe. 
+The `gavote` data contains the voting data of [Georgia (GA) in the 2000 presidential election](https://en.wikipedia.org/wiki/2000_United_States_presidential_election_in_Georgia). It is available as a dataframe. 
 ```{r}
 # equivalent to head(gavote, 10)
 gavote %>% head(10)

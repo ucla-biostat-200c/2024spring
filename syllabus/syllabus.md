@@ -21,7 +21,9 @@ Email: <jinjinzhou@ucla.edu>
 
 Office hours: Tue noon-1:00pm or by appointment
 
-Location: Zoom <https://ucla.zoom.us/j/5842633983>  
+Location: CHS 21-254C
+
+Zoom: (Optional) <https://ucla.zoom.us/j/5842633983>  
 
 ### Teaching Assistant
 
