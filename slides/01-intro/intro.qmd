@@ -24,7 +24,7 @@ knitr:
 
 ## Course webpages
 
-- Github site: <https://ucla-biostat-200c.github.io/2023spring/>
+- Github site: <https://ucla-biostat-200c.github.io/2024spring/>
   + slides, hw, announcements 
 
 - Burinlearn: <https://bruinlearn.ucla.edu/courses/183009>
