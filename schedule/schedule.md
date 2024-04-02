@@ -9,7 +9,6 @@ BIOSTAT 200C tentative schedule and handouts (expect frequent updates)
 
 BruinLearn: <https://bruinlearn.ucla.edu/courses/183009>
 
-
 **ELMR** stands for the textbook _Extending the Linear Model with R_. 
 
 | Week | Tuesday | Thursday | Homework |  
