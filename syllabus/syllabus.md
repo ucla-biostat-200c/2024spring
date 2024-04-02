@@ -3,7 +3,7 @@ layout: course
 title: Methods in Biostatistics C (Biostat 200C)
 ---
 
-# Syllabus - 2023 Spring
+# Syllabus - 2024 Spring
 
 ### Course Description
 
