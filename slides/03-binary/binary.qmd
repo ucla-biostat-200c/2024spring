@@ -353,7 +353,6 @@ wcgs %>%
 
 - **Exercise**: Do similar binned plots for deviance residuals against `height` and deviance residuals vs `cigs` to check the linearity assumption. 
 
-
 ```{r}
 wcgs %>%
   mutate(devres = devres) %>%
@@ -363,6 +362,7 @@ wcgs %>%
   geom_point(mapping = aes(x = height, y = devres)) + 
   labs(x = "height", y = "Binned deviance residual")
 ```
+
 ```{r}
 wcgs %>%
   mutate(devres = devres) %>%
@@ -373,6 +373,17 @@ wcgs %>%
   geom_point(mapping = aes(x = cigs, y = devres, size=sqrt(count))) + 
   labs(x = "cigs", y = "Binned deviance residual")
 ```
+
+- **4/16/24, In class bonus exercise**: Simulate data for a logistic regression model with a quadratic term (e.g., $X_1^2$) as the true model and check the linearity assumption using the following plots:
+
+  - Binned deviance residuals against linear predictor $X_1$ when you model the systematic component as a linear function of the predictors
+  - Binned deviance residuals against the quadratic term $X_1^2$ when you model the systematic component as a quadratic function of the predictors
+  - Binned deviance residuals against fitted value ($\hat\eta$) when  you model the systematic component as a quadratic function of the predictors
+  - Binned deviance residuals against fitted value ($\hat\eta$) when  you model the systematic component as a linear function of the predictors
+  - Scatter plot of logit(binned $Y$) and $X_1^2$: break the range of $X1$ into bins, and within each bin, calculate the mean value of $X1$ and $Y$ for observations in that bin. We then transform the mean of $Y$ through the link function
+  - Scatter plot of logit(binned $Y$) and $\hat\eta$
+  - Scatter plot of logit(binned $Y$) and $X_1$
+  
 
 - QQ plot is not helpful since there is no reason these deviance residuals are approximately standard normal.
 ```{r}
