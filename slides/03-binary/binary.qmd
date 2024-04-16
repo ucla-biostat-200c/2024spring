@@ -624,6 +624,7 @@ We see that this model differs from the best model chosen by AIC by replacing th
 
 ### Try `tidymodels`
 - Dig deeper into tidy modeling with R at <https://www.tmwr.org>
+- Machine Learning Workflow: Lasso Regression [qmd](https://raw.githubusercontent.com/ucla-biostat-212a/2024winter/master/slides/06-modelselection/workflow_lasso.qmd), [html](https://ucla-biostat-212a.github.io/2024winter/slides/06-modelselection/workflow_lasso.html)
 ```{r}
 library(tidymodels)
 ```
