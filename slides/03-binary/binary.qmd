@@ -132,7 +132,7 @@ ggplot(data = tibble(x = 0), mapping = aes(x = x)) + # null data
 \end{eqnarray*}
 HW1: show that the log-likelihood function of logistic regression is a concave function in $\boldsymbol{\beta}$. If you need a refresher how to take derivatives with respect to a vector or matrix, see [Biostat 216 notes](https://ucla-biostat216-2019fall.github.io/slides/16-matrixcalc/16-matrixcalc.html).
 
-- Maximization of this log-likehood function can be carried out by the Newton-Raphson (also known as Fisher scoring) algorithm.
+- Maximization of this log-likelihood function can be carried out by the Newton-Raphson (also known as Fisher scoring) algorithm.
 ```{r}
 (lmod <- glm(chd ~ height + cigs, family = binomial, wcgs))
 ```
@@ -347,6 +347,8 @@ wcgs %>%
   geom_point(mapping = aes(x = linpred, y = devres)) + 
   labs(x = "Linear predictor", y = "Binned deviance residual")
 ```
+- What this plot tells us is there is no obvious association between the deviance residuals and the linear predictor. If there is a pattern, it suggests that the model is not correctly specified. We may need to add more predictors or transform the existing predictors.
+
 **Question**: is there a concern that the deviance residuals are not centered around 0? 
 
 - **Exercise**: Do similar binned plots for deviance residuals against `height` and deviance residuals vs `cigs` to check the linearity assumption. 
