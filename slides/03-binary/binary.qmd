@@ -485,7 +485,9 @@ wcgs %>%
 ```{r}
 (11 + 254) / (2886 + 254 + 11 + 3)
 ```
-![](https://upload.wikimedia.org/wikipedia/commons/e/e7/Sensitivity_and_specificity.svg)
+
+![](Sensitivity_and_specificity.svg)
+
 The **sensitivity** is
 $$
 \frac{\text{TP}}{\text{TP + FN}} = \frac{3}{257} = 1.17\%
