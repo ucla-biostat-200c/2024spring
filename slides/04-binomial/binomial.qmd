@@ -242,7 +242,7 @@ The dispersion parameter $\sigma^2$ can be estimated by
 $$
 \widehat{\sigma}^2 = \frac{X^2}{n - q - 1},
 $$
-where $p$ is the number of parameters consumed by the logistic regression. Estimation of $\boldsymbol{\beta}$ is unchanged but the inference is changed
+where $q$ is the number of parameters consumed by the logistic regression. Estimation of $\boldsymbol{\beta}$ is unchanged but the inference is changed
 $$
 \operatorname{Var} \widehat{\boldsymbol{\beta}} = \widehat{\sigma}^2 (\mathbf{X}^T \widehat{\mathbf{W}} \mathbf{X})^{-1}.
 $$
@@ -250,7 +250,7 @@ $$
 $$
 F = \frac{(D_{\text{small}} - D_{\text{large}})/ (\text{df}_{\text{small}} - \text{df}_{\text{large}})}{\widehat{\sigma}^2}
 $$
-to the (asymptotic) F distribution with degrees of freedom $\text{df}_{\text{small}} - \text{df}_{\text{large}}$ and $n-p$.
+to the (asymptotic) F distribution with degrees of freedom $\text{df}_{\text{small}} - \text{df}_{\text{large}}$ and $n-q$.
 
 - The `troutegg` data set records the number of surviving eggs at 5 stream locations and retrieved at 4 different times.
 ```{r}
