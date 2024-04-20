@@ -249,7 +249,7 @@ Run a logistic regression, using variables `state`, ..., `percent_rural` as pred
 
 ### Q1.4
 
-Interpret the regression coefficients of 3 significant predictors with p-value <0.01.
+Interpret the regression coefficients of 3 significant predictors with p-value <0.05.
 
 ### Q1.5 
 
