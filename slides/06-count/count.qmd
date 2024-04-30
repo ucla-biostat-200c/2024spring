@@ -214,7 +214,7 @@ drop1(modd, test = "F")
 
 - An alternative to Poisson model is the **negative binomial distribution** with probability mass function
 $$
-\mathbb{P}(Y = y) = \binom{y + r - 1}{r - 1} (1 - p)^r p^y, \quad y = 0, 1, \ldots
+\mathbb{P}(Y = y) = \binom{y + r - 1}{r - 1} (1 - p)^y p^r, \quad y = 0, 1, \ldots
 $$
 HW3: show $\mathbb{E}Y = \mu = rp / (1 - p)$ and $\operatorname{Var} Y = r p / (1 - p)^2$.
 
