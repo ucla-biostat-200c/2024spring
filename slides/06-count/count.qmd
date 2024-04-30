@@ -106,8 +106,7 @@ modp %>%
 - The deviance for the Poisson regression is
 \begin{eqnarray*}
   D &=& 2 \sum_i [y_i \log(y_i) - y_i] - 2 \sum_i [y_i \log (\widehat{\mu}_i) - \widehat{\mu}_i] \\
-  &=& 2 \sum_i [y_i \log(y_i / \widehat{\mu}_i) - (y_i - \widehat{\mu}_i)] \\
-  &=& 2 \sum_i y_i \log(y_i / \widehat{\mu}_i),
+  &=& 2 \sum_i [y_i \log(y_i / \widehat{\mu}_i) - (y_i - \widehat{\mu}_i)], 
 \end{eqnarray*}
 where $\widehat{\mu}_i$ are the fitted values from the model. The Poisson deviance is also called the **G-statistic**. 
 
