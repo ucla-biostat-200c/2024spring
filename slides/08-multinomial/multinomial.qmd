@@ -379,23 +379,22 @@ pchisq(deviance(pomodi) - deviance(pomod),
 - Interpretation of coefficients. 
 
     - The odds of moving from `Democratic` to `Independent` or from `Independent` to `Republican` increases by a factor of 
-    ```{r} 
+```{r} 
     exp(pomodi$coef[1])
-    ```
+```
     as income increases by one unit ($1000). 
-    
-    - For income of $0, the predicted probability of being a `Democrat` is
-    ```{r}
+  - For income of $0, the predicted probability of being a `Democrat` is
+```{r}
     ilogit(pomodi$zeta[1])
-    ```
+```
     and that of being an `Independent` is
-    ```{r}
+```{r}
     ilogit(pomodi$zeta[2]) - ilogit(pomodi$zeta[1])
-    ```
+```
     and that of being a `Republican` is
-    ```{r}
+```{r}
     1 - ilogit(pomodi$zeta[2])
-    ```
+```
 
 - The predicted probabilities of each category at each income level is
 ```{r}
