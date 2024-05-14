@@ -177,7 +177,7 @@ aovmod[1][[1]][[3]][2]
 ```
 
 - Drawbacks of ANOVA estimators.
-    1. When MSA<MSE, we obtain $\widehat{\sigma}_{\alpha}^2$.  
+    1. When MSA<MSE, we obtain negative $\widehat{\sigma}_{\alpha}^2$.  
     2. Hard to generalize to unbalanced ANOVA or more complicated designs. 
     
 ### Maximum likelihood estimation (MLE)
