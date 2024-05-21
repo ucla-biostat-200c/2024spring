@@ -1,0 +1,760 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdfauthor={Name \& UID: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Biostat 200C Midterm\\
+Total points: 100 pts}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{May 16, 2024 @ 10am-12pm}
+\author{Name \& UID:
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\section{Directions}\label{directions}
+
+The exam is allotted for 2 hours from 10 AM to 12 PM. This is a
+closed-book exam, and the use of computers, cell-phones, and written
+materials are prohibited. You are allowed to use a calculator as you
+need to answer problems.
+
+There are 10 total questions on the exam with multiple parts. For true
+and false questions, clearly circle your selected answer for each
+problem. For written short answers, write your answers starting below
+the question prompt, or on the next page if there is not enough space.
+Clearly label each part of the problem. Additional scratch paper will be
+provided should you need any.
+
+\textbf{BE SURE TO INCLUDE YOUR NAME ON ANY LOOSE PAPERS YOU INTEND TO
+SUBMIT.}
+
+Good luck on the exam!
+
+\newpage
+
+\subsection{Q1. (8 pts) True or false}\label{q1.-8-pts-true-or-false}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0645}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0645}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0645}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.8065}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+No.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Statement
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1. & T & F & Suppose the outcome in a study is systolic blood pressure,
+treated continuously. Then a logistic model should be used for
+analysis. \\
+2. & T & F & The range of the logistic function lies between 0 and 1. \\
+3. & T & F & The shape of the logistic function is linear. \\
+4. & T & F & The logistic model can be used to describes the probability
+of disease development, e.g., risk for the disease, for a given set of
+independent variables. \\
+5. & T & F & The logistic model can only be applied to analyze a
+prospective (or follow-up) study. \\
+6. & T & F & Given a fitted logistic model from retrospective
+(case-control) study, we can estimate the disease risk for a specific
+individual. \\
+7. & T & F & Given a fitted logistic model from a prospective
+(follow-up) study, it is not possible to estimate individual risk as the
+constant term (intercept) cannot be estimated. \\
+8. & T & F & Given a fitted logistic model from a retrospective
+(case-control) study, an odds ratio can be estimated. \\
+9. & T & F & The coefficient \(\beta_j\) in the logistic model can be
+interpreted as the change in log odds corresponding to a one unit change
+in the variable \(x_j\) that ignores the contribution of other
+variables. \\
+10. & T & F & When estimating the parameters of the logistic model,
+least squares estimation is the preferred method of estimation. \\
+11. & T & F & The likelihood function \(L(\boldsymbol{\theta})\)
+represents the joint probability of observing the data that has been
+collected for analysis. \\
+12. & T & F & The maximum likelihood estimate (MLE) maximizes the
+function \(L(\boldsymbol{\theta})\). \\
+13. & T & F & The analysis of deviance (or likelihood ratio test) is the
+preferred method for testing hypotheses about parameters in the logistic
+model (assuming asymptotic assumptions are reasonably met). \\
+14. & T & F & If a likelihood function for a logistic model contains
+five parameters, then the ML solution optimizes a function with five
+unknowns using an iterative procedure. \\
+15. & T & F & The analysis of of deviance (or likelihood ratio test)
+uses the maximized likelihood value in its computation. \\
+16. & T & F & The Wald test (or z test) and the likelihood ratio test of
+the same hypothesis give approximately the same results in large
+samples. \\
+\end{longtable}
+
+\newpage
+
+\subsection{Q2. (20 pts) Binomial
+model}\label{q2.-20-pts-binomial-model}
+
+Consider a data set where the outcome is count of coronary heart disease
+(\texttt{chd}) cases. \texttt{total} is the total number of study
+individuals in each predictor profile. The predictors of interest are
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable & Type \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{sex} & binary, 1 = male, 0 = female \\
+\texttt{age} & binary, 1 = age \textgreater{} 55, 0 = age \(\le 55\) \\
+\texttt{ecg} & binary, 1 = abnormal, 0 = normal \\
+\end{longtable}
+
+\begin{verbatim}
+##   cases total sex age ecg
+## 1    17   274   0   0   0
+## 2    15   122   0   1   0
+## 3     7    59   0   0   1
+## 4     5    32   0   1   1
+## 5     1     8   1   0   0
+## 6     9    39   1   1   0
+## 7     3    17   1   0   1
+## 8    14    58   1   1   1
+\end{verbatim}
+
+Researchers are interested in whether these predictors are associated
+with the chance of having \texttt{chd}. Based on the R output, answer
+following questions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lmod }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(cases, total }\SpecialCharTok{{-}}\NormalTok{ cases) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{family =}\NormalTok{ binomial, }\AttributeTok{data =}\NormalTok{ chd)}
+\FunctionTok{summary}\NormalTok{(lmod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = cbind(cases, total - cases) ~ ., family = binomial, 
+##     data = chd)
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)  -2.6163     0.2123 -12.322   <2e-16 ***
+## sex1          0.6223     0.3194   1.948   0.0514 .  
+## age1          0.6157     0.2838   2.169   0.0301 *  
+## ecg1          0.3620     0.2904   1.247   0.2126    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 21.33202  on 7  degrees of freedom
+## Residual deviance:  0.95443  on 4  degrees of freedom
+## AIC: 37.666
+## 
+## Number of Fisher Scoring iterations: 4
+\end{verbatim}
+
+\newpage
+
+1 (3 pts). Using the R output above, what are the deviance and log
+likelihood of the fitted model?
+
+3 (2 pts). Does this model with three predictors provide a better fit
+than the intercept only model? State the null hypothesis, the test
+statistic and its degrees of freedom, and the conclusion of the test.
+
+4 (3 pts). Calculate the odds (chd vs.~no chd) for a 60-year-old male
+with abnormal ecg.
+
+5 (3 pts). Suppose we fit a logistic model with intercept, predictors
+\texttt{sex}, \texttt{age} and \texttt{ecg}, their pairwise 2-way
+interactions, and the 3-way interaction \texttt{sex\ x\ age\ x\ ecg}.
+How many parameters are in this model? What will be the deviance of this
+model? Explain.
+
+6 (4 pts). What is the Hessian matrix of the log-likelihood function of
+a logistic model? Explain why the log-likelihood function of a logistic
+model is a concave function. Is it still concave if we used the probit
+link function?
+
+7 (2 pts). Suppose the data is recorded at individual level. Each row is
+a person and the \texttt{case} variable indicates whether that person
+has coronary heart disease (\texttt{yes}) or not (\texttt{no}). If we
+fit a logistic regression using \texttt{chd} as the binary outcome, what
+will be the fitted regression coefficients for \texttt{sex},
+\texttt{age}, and \texttt{ecg}? Explain your answer.
+
+\begin{verbatim}
+## # A tibble: 609 x 4
+##    sex   age   ecg   chd  
+##    <fct> <fct> <fct> <chr>
+##  1 0     0     0     yes  
+##  2 0     0     0     yes  
+##  3 0     0     0     yes  
+##  4 0     0     0     yes  
+##  5 0     0     0     yes  
+##  6 0     0     0     yes  
+##  7 0     0     0     yes  
+##  8 0     0     0     yes  
+##  9 0     0     0     yes  
+## 10 0     0     0     yes  
+## # i 599 more rows
+\end{verbatim}
+
+\newpage
+
+\subsection{Q2: (Extra Space)}\label{q2-extra-space}
+
+\newpage
+
+\subsection{Q3. (10 pts) ROC, sensitivity,
+specificity}\label{q3.-10-pts-roc-sensitivity-specificity}
+
+Recall the heart disease data set \texttt{wcgs} in ELMR. We model the
+dependence of disease status \texttt{chd} on \texttt{height} and number
+of cigarettes per day \texttt{cigs}. Assume we use a cut-point of 0.15
+in classification of disease status.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lmod }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(chd }\SpecialCharTok{\textasciitilde{}}\NormalTok{ height }\SpecialCharTok{+}\NormalTok{ cigs, }\AttributeTok{family =}\NormalTok{ binomial, }\AttributeTok{data =}\NormalTok{ wcgs)}
+\FunctionTok{summary}\NormalTok{(lmod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = chd ~ height + cigs, family = binomial, data = wcgs)
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -4.50161    1.84186  -2.444   0.0145 *  
+## height       0.02521    0.02633   0.957   0.3383    
+## cigs         0.02313    0.00404   5.724 1.04e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1781.2  on 3153  degrees of freedom
+## Residual deviance: 1749.0  on 3151  degrees of freedom
+## AIC: 1755
+## 
+## Number of Fisher Scoring iterations: 5
+\end{verbatim}
+
+1 (2 pts). Given, the numbers below, find the number of true positive
+(TP), false positive (FP), true negatives (TN), and false negatives
+(FN).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wcgs }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{predprob =} \FunctionTok{predict}\NormalTok{(lmod, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{predout =} \FunctionTok{ifelse}\NormalTok{(predprob }\SpecialCharTok{\textgreater{}=} \FloatTok{0.15}\NormalTok{, }\StringTok{"yes"}\NormalTok{, }\StringTok{"no"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{xtabs}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ chd }\SpecialCharTok{+}\NormalTok{ predout, }\AttributeTok{data =}\NormalTok{ .)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      predout
+## chd     no  yes
+##   no  2838   59
+##   yes  245   12
+\end{verbatim}
+
+2 (2 pts). Compute the sensitivity, specificty, and 1 - specificity.
+
+3 (3 pts). Suppose we used a cut-point of 0.25 instead of 0.15 when
+classifying disease status. Explain what effect, if any, this would have
+on the values computed in (2).
+
+4 (3 pts). Explain what the area under an ROC curve is and why it is a
+measure of the classification performance of a logistic model.
+
+\newpage
+
+\subsection{Q3: (Extra Space)}\label{q3-extra-space}
+
+\newpage
+
+\subsection{Q4. (9 pts) Matched case-control
+study}\label{q4.-9-pts-matched-case-control-study}
+
+Consider a matched pair study (from ELMR) of the relationship between
+X-ray exposure and childhood acute myeloid leukemia. Matching was done
+on age, race and county of residence.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ramlxray }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(amlxray) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(ID, disease, Sex, age, Fray, CnRay) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{CnRay =} \FunctionTok{unclass}\NormalTok{(CnRay)) }\SpecialCharTok{\%\textgreater{}\%}
+  \CommentTok{\# take out Down symdrome cases}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{(ID }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{7010}\NormalTok{, }\DecValTok{7018}\NormalTok{, }\DecValTok{7066}\NormalTok{, }\DecValTok{7077}\NormalTok{, }\DecValTok{7146}\NormalTok{, }\DecValTok{7176}\NormalTok{, }\DecValTok{7189}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{(}\AttributeTok{width =} \ConstantTok{Inf}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 223 x 6
+##    ID    disease Sex     age Fray  CnRay
+##    <fct>   <dbl> <fct> <int> <fct> <int>
+##  1 7004        1 F         0 no        1
+##  2 7004        0 F         0 no        1
+##  3 7006        1 M         6 no        3
+##  4 7006        0 M         6 no        2
+##  5 7009        1 F         8 no        1
+##  6 7009        0 F         8 no        1
+##  7 7013        1 M         4 no        1
+##  8 7013        0 M         4 no        2
+##  9 7014        1 F         9 no        1
+## 10 7014        0 M         9 no        1
+## # i 213 more rows
+\end{verbatim}
+
+The fitted coefficients are
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clogit}\NormalTok{(disease }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Sex }\SpecialCharTok{+}\NormalTok{ Fray }\SpecialCharTok{+} \FunctionTok{unclass}\NormalTok{(CnRay) }\SpecialCharTok{+} \FunctionTok{strata}\NormalTok{(ID), }\AttributeTok{data =}\NormalTok{ ramlxray) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+## coxph(formula = Surv(rep(1, 223L), disease) ~ Sex + Fray + unclass(CnRay) + 
+##     strata(ID), data = ramlxray, method = "exact")
+## 
+##   n= 223, number of events= 104 
+## 
+##                   coef exp(coef) se(coef)     z Pr(>|z|)    
+## SexM           0.06865   1.07106  0.37448 0.183 0.854548    
+## Frayyes        0.66698   1.94834  0.34485 1.934 0.053102 .  
+## unclass(CnRay) 0.81144   2.25116  0.23674 3.428 0.000609 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+##                exp(coef) exp(-coef) lower .95 upper .95
+## SexM               1.071     0.9337    0.5141     2.231
+## Frayyes            1.948     0.5133    0.9911     3.830
+## unclass(CnRay)     2.251     0.4442    1.4154     3.580
+## 
+## Concordance= 0.654  (se = 0.056 )
+## Likelihood ratio test= 19.58  on 3 df,   p=2e-04
+## Wald test            = 14.15  on 3 df,   p=0.003
+## Score (logrank) test = 17.57  on 3 df,   p=5e-04
+\end{verbatim}
+
+\newpage
+
+1 (2 pts). Explain why the variable \texttt{age} is not included in the
+model.
+
+2 (3 pts). What is the odds ratio for the effect of the father having
+exposure to X-ray against the father having no exposure to X-ray
+(variable \texttt{Fray}), controlling for the effect of other
+predictors?
+
+3 (2 pts). Explain why the function for fitting a conditional logistic
+regression is provided by a package for survival analysis.
+
+4 (2 pts). Explain when conditional logistic regression should be used
+over unconditional logistic regression.
+
+\newpage
+
+\subsection{Q4: (Extra Space)}\label{q4-extra-space}
+
+\newpage
+
+\subsection{Q5. (2 pts) True or false}\label{q5.-2-pts-true-or-false}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0645}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0645}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0645}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.8065}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+No.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Statement
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1. & T & F & An outcome variable with categories North, South, East, and
+West is an ordinal variable. \\
+2. & T & F & In a polytomous (or multinomial) logistic regression in
+which the outcome variable has five levels, there will be four
+intercepts. \\
+3. & T & F & In a polytomous (or multinomial) logistic regression in
+which the outcome variable has five levels, each independent variable
+will have one estimated coefficient. \\
+4. & T & F & In a polytomous (or multinomial) model, the decision of
+which outcome category is designated as the reference has no bearing on
+the parameter estimates since the choice of reference category is
+arbitrary. \\
+\end{longtable}
+
+\newpage
+
+\subsection{Q6. (13 pts) Multinomial
+model}\label{q6.-13-pts-multinomial-model}
+
+Suppose the following polytomous (or multinomial) model is specified for
+assessing the effects of \texttt{age} (continuous), \texttt{gender}
+(male = 1, female = 0), \texttt{smoke} (smoker = 1, nonsmoker = 0), and
+hypertension status \texttt{hpt} (yes = 1, no = 0) on a disease variable
+with four outcomes (D = 0 for none, D = 1 for mild, D = 2 for severe,
+and D = 3 for critical). \[
+\log \left[ \frac{\mathbb{P}(D=g \mid \mathbf{x})}{\mathbb{P}(D=0 \mid \mathbf{x})} \right] = \beta_{g,0} + \text{age} \cdot \beta_{g,\text{age}} + \text{gender} \cdot \beta_{g,\text{gender}} + \text{smoke} \cdot \beta_{g,\text{smoke}} + \text{hpt} \cdot \beta_{g,\text{hpt}},
+\] where \(g = 1, 2, 3\).
+
+1 (2 pts). What is the total number of parameters in this model?
+
+2 (3 pts). Give an expression for the odds (severe vs.~none) for a
+40-year-old non-smoking male in terms of the regression coefficients.
+
+3 (3 pts). Given an expression for the odds ratio for male vs.~female,
+comparing mild disease to none, while controlling for \texttt{age},
+\texttt{smoke}, and \texttt{hpt}.
+
+4 (3 pts). Describe how you would perform a likelihood ratio test to
+simultaneously test the significance of the \texttt{smoke} and
+\texttt{hpt} coefficients. State the null hypothesis, the test
+statistic, and the distribution of the test statistic under the null
+hypothesis.
+
+5 (2 pts). If we extend the model to allow for an interaction between
+\texttt{age} and \texttt{gender} and between \texttt{smoke} and
+\texttt{gender}, how many additional parameters would be added to the
+model?
+
+\newpage
+
+\subsection{Q6: (Extra Space)}\label{q6-extra-space}
+
+\newpage
+
+\subsection{Q7. (5 pts) True or false}\label{q7.-5-pts-true-or-false}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0645}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0645}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0645}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.8065}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+No.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Statement
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1. & T & F & The disease categories absent, mild, moderate, and severe
+can be ordinal. \\
+2. & T & F & In an ordinal logistic regression (proportional odds model)
+in which the outcome variable has five levels, there will be four
+intercepts. \\
+3. & T & F & In an ordinal logistic regression in which the outcome
+variable has five levels, each independent variable will have four
+estimated coefficients. \\
+4. & T & F & If the outcome D has seven levels (coded 1, 2,\ldots, 7),
+an assumption of the proportional odds model is that
+\(\frac{\mathbb{P}(D \le 3)}{\mathbb{P}(D > 3)}\) is assumed equal to
+\(\frac{\mathbb{P}(D \le 5)}{\mathbb{P}(D > 5)}\). \\
+5. & T & F & If the outcome D has seven levels (coded 1, 2,\ldots, 7)
+and a predictor \(E\) has two levels (coded 0 and 1), then an assumption
+of the proportional odds model is that
+\(\frac{\mathbb{P}(D \le 3 \mid E = 1) / \mathbb{P}(D > 3 \mid E = 1)}{\mathbb{P}(D \le 3 \mid E = 0) / \mathbb{P}(D > 3 \mid E = 0)}\)
+is assumed equal to
+\(\frac{\mathbb{P}(D \le 5 \mid E = 1) / \mathbb{P}(D > 5 \mid E = 1)}{\mathbb{P}(D \le 5 \mid E = 0) / \mathbb{P}(D > 5 \mid E = 0)}\). \\
+6. & T & F & If the outcome D has four categories coded
+\(D = 0, 1, 2, 3\), then the log odds of \(D \le 2\) is greater than the
+log odds of \(D \le 1\). \\
+7. & T & F & Suppose a four level outcome \(D\) coded \(D = 0, 1, 2, 3\)
+is recoded \(D^* = 1, 2, 7, 29\), then the choice of using \(D\) or
+\(D^*\) as the outcome in a proportional odds model has no effect on the
+parameter estimates as long as the order in the outcome is preserved. \\
+8. & T & F & In a GLM, the mean response is modeled as linear with
+respect to the regression parameters. \\
+9. & T & F & In a GLM, a function of the mean response is modeled as
+linear with respect to the regression parameters. That function is
+called the link function. \\
+10. & T & F & Quasi-likelihood estimates may be obtained even if the
+distribution of the response variable is unknown. What should be
+specified is a function relating the variance to the mean response. \\
+\end{longtable}
+
+\newpage
+
+\subsection{Q8. (15 pts) Ordinal logistic
+model}\label{q8.-15-pts-ordinal-logistic-model}
+
+Consider the model in Q6. This time we treat the outcome as an ordinal
+variable and use a proportional odds model. \[
+\log \left[ \frac{\mathbb{P}(D \le g \mid \mathbf{x})}{\mathbb{P}(D > g \mid \mathbf{x})} \right] = \theta_{g} - \text{age} \cdot \beta_{\text{age}} - \text{gender} \cdot \beta_{\text{gender}} - \text{smoke} \cdot \beta_{\text{smoke}} - \text{hpt} \cdot \beta_{\text{hpt}},
+\] where \(g =0, 1, 2, 3\).
+
+1 (2 pts). What is the total number of parameters in this model?
+
+2 (5 pts). Give an expression for the odds of a severe or critical
+outcome (\(D \ge 2\)) for a 40-year-old male smoker without
+hypertension.
+
+3 (3 pts). Give an expression for the mild, severe, or critical stage of
+disease (i.e., \(D \ge 1\)) comparing hypertensive smokers vs
+nonhypertensive nonsmokers, controlling for \texttt{age} and
+\texttt{gender}.
+
+4 (5 pts). Give an expression for the odds ratio for critical disease
+only (\(D = 3\)) comparing hypertensive smokers vs nonhypertensive
+nonsmokers, controlling for \texttt{age} and \texttt{gender}.
+
+5 (3 pts). Given an expression for the odds ratio for mild or no disease
+(\(D < 2\)) comparing hypertensive smokers vs.~nonhypertensive
+nonsmokers, controlling for \texttt{age} and \texttt{gender}.
+
+\newpage
+
+\subsection{Q8: (Extra Space)}\label{q8-extra-space}
+
+\newpage
+
+\subsection{Q9. (8 pts) Link functions}\label{q9.-8-pts-link-functions}
+
+Write down the (1) names, (2) expressions, and (3) the name of
+corresponding latent variable distribution of 3 commonly used link
+functions for a Bernoulli or binomial parameter \(p\).
+
+Example: Identiy link, \(\eta = g(p) = p\), corresponds to a uniform
+distribution for the latent variable.
+
+\newpage
+
+\subsection{Q10. (10 pts) Inverse
+Gaussian}\label{q10.-10-pts-inverse-gaussian}
+
+Recall in GLM, the distribution of \(Y\) is from the exponential family
+of distributions if it takes the form as \[
+  f(y \mid \theta, \phi) = \exp \left[ \frac{y \theta - b(\theta)}{a(\phi)} + c(y, \phi) \right].
+\]
+
+The inverse Gaussian distribution \(IG(\mu, \lambda)\) has density \[
+f(y) = \left( \frac{\lambda}{2 \pi y^3} \right)^{1/2} e^{- \frac{\lambda (y - \mu)^2}{2 \mu^2 y}}, \quad y, \mu, \lambda > 0.
+\]
+
+1 (2 pts). We we can rewrite \(IG(\mu, \lambda)\) as the following form
+
+\[
+f(y) = \exp \bigg[ \frac{y (-\mu^{-2}) + 2/\mu}{2/\lambda} - \frac{\lambda}{2y} + \frac{\log \lambda - \log (2\pi y^3)}{2}. \bigg]
+\] \quad  Does \(IG(\mu, \lambda)\) belong to the exponential family
+distributions? If yes, write down expressions for \(\theta\),
+\(b(\theta)\), \(a(\phi)\), and \(c(y, \phi)\). If not, explain why not.
+
+If your answer is ``Yes'' to question 1, answer the following questions:
+
+2 (2 pts). What is the canonical parameters?
+
+3 (4 pts). Derive the mean and variance of inverse Gaussian.
+
+4 (2 pts). What is the canonical link function for inverse Gaussian?
+
+\newpage
+
+\subsection{Q10: (Extra Space)}\label{q10-extra-space}
+
+\newpage
+
+\subsection{\texorpdfstring{Appendix: \(\chi^2\)
+Table}{Appendix: \textbackslash chi\^{}2 Table}}\label{appendix-chi2-table}
+
+\begin{verbatim}
+## 
+## Attaching package: 'kableExtra'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     group_rows
+\end{verbatim}
+
+\begin{table}[H]
+\centering
+\caption{\label{tab:unnamed-chunk-8}Chi Square Critical Value Table.}
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{ccccccccc}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{8}{c}{P-value} \\
+\cmidrule(l{3pt}r{3pt}){2-9}
+Df & 0.99 & 0.9 & 0.1 & 0.05 & 0.02 & 0.01 & 0.005 & 0.001\\
+\midrule
+\cellcolor{gray!10}{1} & \cellcolor{gray!10}{0.0002} & \cellcolor{gray!10}{0.0158} & \cellcolor{gray!10}{2.7055} & \cellcolor{gray!10}{3.8415} & \cellcolor{gray!10}{5.4119} & \cellcolor{gray!10}{6.6349} & \cellcolor{gray!10}{7.8794} & \cellcolor{gray!10}{10.8276}\\
+2 & 0.0201 & 0.2107 & 4.6052 & 5.9915 & 7.8240 & 9.2103 & 10.5966 & 13.8155\\
+\cellcolor{gray!10}{3} & \cellcolor{gray!10}{0.1148} & \cellcolor{gray!10}{0.5844} & \cellcolor{gray!10}{6.2514} & \cellcolor{gray!10}{7.8147} & \cellcolor{gray!10}{9.8374} & \cellcolor{gray!10}{11.3449} & \cellcolor{gray!10}{12.8382} & \cellcolor{gray!10}{16.2662}\\
+4 & 0.2971 & 1.0636 & 7.7794 & 9.4877 & 11.6678 & 13.2767 & 14.8603 & 18.4668\\
+\cellcolor{gray!10}{5} & \cellcolor{gray!10}{0.5543} & \cellcolor{gray!10}{1.6103} & \cellcolor{gray!10}{9.2364} & \cellcolor{gray!10}{11.0705} & \cellcolor{gray!10}{13.3882} & \cellcolor{gray!10}{15.0863} & \cellcolor{gray!10}{16.7496} & \cellcolor{gray!10}{20.5150}\\
+6 & 0.8721 & 2.2041 & 10.6446 & 12.5916 & 15.0332 & 16.8119 & 18.5476 & 22.4577\\
+\cellcolor{gray!10}{7} & \cellcolor{gray!10}{1.2390} & \cellcolor{gray!10}{2.8331} & \cellcolor{gray!10}{12.0170} & \cellcolor{gray!10}{14.0671} & \cellcolor{gray!10}{16.6224} & \cellcolor{gray!10}{18.4753} & \cellcolor{gray!10}{20.2777} & \cellcolor{gray!10}{24.3219}\\
+8 & 1.6465 & 3.4895 & 13.3616 & 15.5073 & 18.1682 & 20.0902 & 21.9550 & 26.1245\\
+\cellcolor{gray!10}{9} & \cellcolor{gray!10}{2.0879} & \cellcolor{gray!10}{4.1682} & \cellcolor{gray!10}{14.6837} & \cellcolor{gray!10}{16.9190} & \cellcolor{gray!10}{19.6790} & \cellcolor{gray!10}{21.6660} & \cellcolor{gray!10}{23.5894} & \cellcolor{gray!10}{27.8772}\\
+10 & 2.5582 & 4.8652 & 15.9872 & 18.3070 & 21.1608 & 23.2093 & 25.1882 & 29.5883\\
+\cellcolor{gray!10}{11} & \cellcolor{gray!10}{3.0535} & \cellcolor{gray!10}{5.5778} & \cellcolor{gray!10}{17.2750} & \cellcolor{gray!10}{19.6751} & \cellcolor{gray!10}{22.6179} & \cellcolor{gray!10}{24.7250} & \cellcolor{gray!10}{26.7568} & \cellcolor{gray!10}{31.2641}\\
+12 & 3.5706 & 6.3038 & 18.5493 & 21.0261 & 24.0540 & 26.2170 & 28.2995 & 32.9095\\
+\cellcolor{gray!10}{13} & \cellcolor{gray!10}{4.1069} & \cellcolor{gray!10}{7.0415} & \cellcolor{gray!10}{19.8119} & \cellcolor{gray!10}{22.3620} & \cellcolor{gray!10}{25.4715} & \cellcolor{gray!10}{27.6882} & \cellcolor{gray!10}{29.8195} & \cellcolor{gray!10}{34.5282}\\
+14 & 4.6604 & 7.7895 & 21.0641 & 23.6848 & 26.8728 & 29.1412 & 31.3193 & 36.1233\\
+\cellcolor{gray!10}{15} & \cellcolor{gray!10}{5.2293} & \cellcolor{gray!10}{8.5468} & \cellcolor{gray!10}{22.3071} & \cellcolor{gray!10}{24.9958} & \cellcolor{gray!10}{28.2595} & \cellcolor{gray!10}{30.5779} & \cellcolor{gray!10}{32.8013} & \cellcolor{gray!10}{37.6973}\\
+16 & 5.8122 & 9.3122 & 23.5418 & 26.2962 & 29.6332 & 31.9999 & 34.2672 & 39.2524\\
+\cellcolor{gray!10}{17} & \cellcolor{gray!10}{6.4078} & \cellcolor{gray!10}{10.0852} & \cellcolor{gray!10}{24.7690} & \cellcolor{gray!10}{27.5871} & \cellcolor{gray!10}{30.9950} & \cellcolor{gray!10}{33.4087} & \cellcolor{gray!10}{35.7185} & \cellcolor{gray!10}{40.7902}\\
+18 & 7.0149 & 10.8649 & 25.9894 & 28.8693 & 32.3462 & 34.8053 & 37.1565 & 42.3124\\
+\cellcolor{gray!10}{19} & \cellcolor{gray!10}{7.6327} & \cellcolor{gray!10}{11.6509} & \cellcolor{gray!10}{27.2036} & \cellcolor{gray!10}{30.1435} & \cellcolor{gray!10}{33.6874} & \cellcolor{gray!10}{36.1909} & \cellcolor{gray!10}{38.5823} & \cellcolor{gray!10}{43.8202}\\
+20 & 8.2604 & 12.4426 & 28.4120 & 31.4104 & 35.0196 & 37.5662 & 39.9968 & 45.3147\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\end{document}
