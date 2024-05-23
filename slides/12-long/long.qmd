@@ -35,6 +35,11 @@ library(precrec)
 # install.packages("precrec")
 ```
 
+## Additional reading materials
+- [Applied longitudinal analysis / Garrett M. Fitzmaurice, Nan M. Laird, James H. Ware.](https://search.library.ucla.edu/discovery/fulldisplay?docid=alma9967877733606533&context=L&vid=01UCS_LAL:UCLA&lang=en&search_scope=ArticlesBooksMore&adaptor=Local%20Search%20Engine&tab=Articles_books_more_slot&query=any,contains,Applied%20Longitudinal%20Analysis%20)
+
+- [Analysis of longitudinal data](https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9912401060406531)
+
 ## Longitudinal data - PSID data set
 
 - `psid` (Panel Study of Income Dynamics) data records the income of 85 individuals, who were aged 25-39 in 1968 and had complete data for at least 11 of the years between 1968 and 1990.
