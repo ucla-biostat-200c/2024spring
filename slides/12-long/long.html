@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr. Jin Zhou @ UCLA">
-<meta name="dcterms.date" content="2024-05-09">
+<meta name="dcterms.date" content="2024-05-21">
 
 <title>Repeated Measures and Longitudinal Data (ELMR Chapter 11)</title>
 <style>
@@ -2652,7 +2652,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 9, 2024</p>
+      <p class="date">May 21, 2024</p>
     </div>
   </div>
   
@@ -2897,16 +2897,16 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mmod, <span class="at">method =</span> <span class="st">&quot;boot&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  2.5 %       97.5 %
-.sig01       0.43777515  0.629032516
-.sig02      -0.06837612  0.406116543
-.sig03       0.03805489  0.057968854
-.sigma       0.65908498  0.708238700
-(Intercept)  5.52744356  7.764127250
-cyear        0.06947359  0.102524955
-sexM         0.89988201  1.403309512
-age         -0.01536437  0.041080115
-educ         0.06461067  0.146732944
-cyear:sexM  -0.05253777 -0.004770387</code></pre>
+.sig01       0.43394819  0.617707227
+.sig02      -0.05607675  0.443688300
+.sig03       0.03863013  0.058986577
+.sigma       0.65891251  0.708488357
+(Intercept)  5.55916953  7.841486388
+cyear        0.07050815  0.103457960
+sexM         0.90924291  1.371495821
+age         -0.01793107  0.037054727
+educ         0.06288698  0.148007960
+cyear:sexM  -0.04801168 -0.004547217</code></pre>
 </div>
 </div>
 <p>All variance component parameters are significant except for the covariance (correlation) between random intercept and slope.</p>
@@ -3142,7 +3142,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Model failed to converge with max|grad| = 0.00254113 (tol = 0.002, component 1)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Bootstrap test; time: 8.10 sec; samples: 1000; extremes: 51;
+<pre><code>Bootstrap test; time: 8.40 sec; samples: 1000; extremes: 51;
 large : acuity ~ power + (1 | subject) + (1 | subject:eye)
 acuity ~ (1 | subject) + (1 | subject:eye)
            stat     df    ddf p.value  
@@ -3185,7 +3185,7 @@ Model failed to converge with max|grad| = 0.00210241 (tol = 0.002, component 1)<
 Model failed to converge with max|grad| = 0.00245455 (tol = 0.002, component 1)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Bootstrap test; time: 8.47 sec; samples: 1000; extremes: 31;
+<pre><code>Bootstrap test; time: 8.70 sec; samples: 1000; extremes: 31;
 large : acuity ~ power + (1 | subject) + (1 | subject:eye)
 acuity ~ (1 | subject) + (1 | subject:eye)
             stat      df    ddf p.value  
