@@ -107,7 +107,7 @@ Wage %>%
 
 #### Python
 
-```{python}
+```{python, eval = FALSE}
 # Load the pandas library
 import pandas as pd
 # Load numpy for array manipulation
@@ -126,7 +126,7 @@ Wage = pd.read_csv("../data/Wage.csv")
 Wage.info()
 ```
 
-```{python}
+```{python, eval = FALSE}
 # Visualize wage ~ age, display lowess curve
 plt.figure()
 sns.lmplot(
@@ -177,7 +177,7 @@ Wage %>%
 
 #### Python
 
-```{python}
+```{python, eval = FALSE}
 # Visualize wage ~ age, display order-4 polynomial fit
 plt.figure()
 sns.lmplot(
@@ -269,7 +269,7 @@ Wage %>%
 
 #### Python (sklearn)
 
-```{python}
+```{python, eval = FALSE}
 from sklearn.compose import make_column_transformer
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import Pipeline
@@ -295,7 +295,7 @@ pipe.fit(X, y)
 pipe.score(X, y)
 ```
 
-```{python}
+```{python, eval = FALSE}
 # Plot
 plt.figure()
 ax = sns.scatterplot(
@@ -318,7 +318,7 @@ plt.show()
 
 #### Python (statsmodels)
 
-```{python}
+```{python, eval = FALSE}
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
@@ -329,7 +329,7 @@ lmod.summary()
 
 #### Python (numpy.polyfit)
 
-```{python}
+```{python, eval = FALSE}
 np.polyfit(Wage.age, Wage.wage, deg = 4)
 ```
 :::
@@ -400,7 +400,7 @@ $$
 
 - While the truncated power basis is conceptually simple, it is not too attractive numerically: powers of large numbers can lead to severe rounding problems. In practice, **B-spline basis functions** are preferred for their computational efficiency. See ESL Chapter 5 Appendix.
 
-```{python}
+```{python, eval = FALSE}
 #| code-fold: true
 from sklearn.preprocessing import SplineTransformer
 
@@ -636,7 +636,7 @@ plot(gam_mod, se = TRUE, col = "red")
 
 #### Python (sklearn)
 
-```{python}
+```{python, eval = FALSE}
 from sklearn.preprocessing import OneHotEncoder, SplineTransformer
 
 # Natural cubic spline features of year predictor
@@ -675,7 +675,7 @@ pipe.score(X, y)
 
 #### Python (statsmodels)
 
-```{python}
+```{python, eval = FALSE}
 from statsmodels.gam.api import GLMGam, BSplines
 
 # Create spline basis for year and age
@@ -687,7 +687,7 @@ gam_mod = GLMGam.from_formula('wage ~ education', data = Wage, smoother = bs).fi
 gam_mod.summary()
 ```
 
-```{python}
+```{python, eval = FALSE}
 # Plot smooth components
 for i in [0, 1]:
   plt.figure()
