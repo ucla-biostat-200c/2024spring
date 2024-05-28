@@ -1,11 +1,12 @@
 ---
 title: "Machine Learning Workflow: Adding Nonlinearities to Predictive Modeling"
-subtitle: "Econ 425T"
-author: "Dr. Hua Zhou @ UCLA"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+subtitle: "Biostat 212A"
+author: "Dr. Jin Zhou @ UCLA"
+date: today
 format:
   html:
     theme: cosmo
+    embed-resources: true
     number-sections: true
     toc: true
     toc-depth: 4
@@ -68,6 +69,34 @@ A documentation of the `Wage` data is [here](https://www.rdocumentation.org/pack
 
 ::: {.panel-tabset}
 
+#### R
+
+```{r}
+library(GGally)
+library(ISLR2)
+library(tidymodels)
+library(tidyverse)
+
+Wage <- as_tibble(Wage) %>%
+  select(-region) %>%
+  print(width = Inf)
+
+# Numerical summaries
+summary(Wage)
+```
+
+Graphical summary takes longer to run so suppressed here.
+```{r}
+#| eval: false
+# Graphical summaries
+ggpairs(
+  data = Wage, 
+  mapping = aes(alpha = 0.25), 
+  lower = list(continuous = "smooth")
+  ) + 
+  labs(title = "Wage Data")
+```
+
 #### Python
 
 ```{python}
@@ -101,33 +130,7 @@ sns.pairplot(data = Wage);
 plt.show()
 ```
 
-#### R
 
-```{r}
-library(GGally)
-library(ISLR2)
-library(tidymodels)
-library(tidyverse)
-
-Wage <- as_tibble(Wage) %>%
-  select(-region) %>%
-  print(width = Inf)
-
-# Numerical summaries
-summary(Wage)
-```
-
-Graphical summary takes longer to run so suppressed here.
-```{r}
-#| eval: false
-# Graphical summaries
-ggpairs(
-  data = Wage, 
-  mapping = aes(alpha = 0.25), 
-  lower = list(continuous = "smooth")
-  ) + 
-  labs(title = "Wage Data")
-```
 
 :::
 
@@ -135,6 +138,26 @@ ggpairs(
 ## Initial split into test and non-test sets
 
 ::: {.panel-tabset}
+
+
+
+#### R
+
+```{r}
+# For reproducibility
+set.seed(425)
+data_split <- initial_split(
+  Wage, 
+  # # stratify by percentiles
+  # strata = "Salary", 
+  prop = 0.75
+  )
+
+Wage_other <- training(data_split)
+dim(Wage_other)
+Wage_test <- testing(data_split)
+dim(Wage_test)
+```
 
 #### Python
 
@@ -160,24 +183,6 @@ X_test = Wage_test.drop(['wage'], axis = 1)
 y_test = Wage_test.wage
 ```
 
-#### R
-
-```{r}
-# For reproducibility
-set.seed(425)
-data_split <- initial_split(
-  Wage, 
-  # # stratify by percentiles
-  # strata = "Salary", 
-  prop = 0.75
-  )
-
-Wage_other <- training(data_split)
-dim(Wage_other)
-Wage_test <- testing(data_split)
-dim(Wage_test)
-```
-
 :::
 
 ## Preprocessing (Python) or recipe (R)
@@ -185,6 +190,32 @@ dim(Wage_test)
 For regularization methods such as ridge and lasso, it is essential to center and scale predictors. 
 
 ::: {.panel-tabset}
+
+
+
+#### R
+
+```{r}
+#| eval: true
+norm_recipe <- 
+  recipe(
+    wage ~ ., 
+    data = Wage_other
+  ) %>%
+  # create traditional dummy variables
+  step_dummy(all_nominal()) %>%
+  # zero-variance filter
+  step_zv(all_predictors()) %>% 
+  # B-splines of age
+  step_bs(age, deg_free = 5) %>%
+  # B-splines of year
+  step_bs(year, deg_free = 4) %>%
+  # center and scale numeric data
+  step_normalize(all_predictors()) %>%
+  # estimate the means and standard deviations
+  prep(training = Wage_other, retain = TRUE)
+norm_recipe
+```
 
 #### Python
 
@@ -215,30 +246,6 @@ col_tf = make_column_transformer(
 std_tf = StandardScaler()
 ```
 
-#### R
-
-```{r}
-#| eval: true
-norm_recipe <- 
-  recipe(
-    wage ~ ., 
-    data = Wage_other
-  ) %>%
-  # create traditional dummy variables
-  step_dummy(all_nominal()) %>%
-  # zero-variance filter
-  step_zv(all_predictors()) %>% 
-  # B-splines of age
-  step_bs(age, deg_free = 5) %>%
-  # B-splines of year
-  step_bs(year, deg_free = 4) %>%
-  # center and scale numeric data
-  step_normalize(all_predictors()) %>%
-  # estimate the means and standard deviations
-  prep(training = Wage_other, retain = TRUE)
-norm_recipe
-```
-
 :::
 
 ## Model
@@ -247,14 +254,7 @@ norm_recipe
 
 We use elastic net in this example.
 
-#### Python
 
-```{python}
-from sklearn.linear_model import ElasticNet
-
-enet_mod = ElasticNet()
-enet_mod
-```
 
 #### R
 
@@ -267,6 +267,15 @@ enet_mod <-
 enet_mod
 ```
 
+#### Python
+
+```{python}
+from sklearn.linear_model import ElasticNet
+
+enet_mod = ElasticNet()
+enet_mod
+```
+
 :::
 
 ## Pipeline (Python) or workflow (R)
@@ -275,16 +284,7 @@ Here we bundle the preprocessing step (Python) or recipe (R) and model.
 
 ::: {.panel-tabset}
 
-#### Python
 
-```{python}
-pipe = Pipeline(steps = [
-  ("col_tf", col_tf),
-  ("std_tf", std_tf),
-  ("model", enet_mod)
-  ])
-pipe
-```
 
 #### R
 
@@ -297,6 +297,17 @@ lr_wf <-
 lr_wf
 ```
 
+#### Python
+
+```{python}
+pipe = Pipeline(steps = [
+  ("col_tf", col_tf),
+  ("std_tf", std_tf),
+  ("model", enet_mod)
+  ])
+pipe
+```
+
 :::
 
 ## Tuning grid
@@ -304,6 +315,20 @@ lr_wf
 Set up the 2D grid for tuning.
 
 ::: {.panel-tabset}
+
+
+
+#### R
+
+```{r}
+#| eval: true
+param_grid <-grid_regular(
+  penalty(range = c(-5, 0), trans = log10_trans()), 
+  mixture(range = c(0, 1)),
+  levels = c(penalty = 50, mixture = 6)
+  )
+param_grid
+```
 
 #### Python
 
@@ -320,74 +345,13 @@ tuned_parameters = {
 tuned_parameters  
 ```
 
-#### R
-
-```{r}
-#| eval: true
-param_grid <-grid_regular(
-  penalty(range = c(-5, 0), trans = log10_trans()), 
-  mixture(range = c(0, 1)),
-  levels = c(penalty = 50, mixture = 6)
-  )
-param_grid
-```
-
 :::
 
 ## Cross-validation (CV)
 
 ::: {.panel-tabset}
 
-#### Python
 
-Set up CV partitions and CV criterion.
-```{python}
-from sklearn.model_selection import GridSearchCV
-
-# Set up CV
-n_folds = 10
-search = GridSearchCV(
-  pipe,
-  tuned_parameters,
-  cv = n_folds, 
-  scoring = "neg_root_mean_squared_error",
-  # Refit the best model on the whole data set
-  refit = True
-  )
-```
-
-Fit CV. This is typically the most time-consuming step.
-```{python}
-# Fit CV
-search.fit(X_other, y_other)
-```
-
-Visualize CV results (TODO).
-```{python}
-#| eval: false
-#| code-fold: true
-cv_res = pd.DataFrame({
-  "alpha": alphas,
-  "rmse": -search.cv_results_["mean_test_score"]
-  })
-
-plt.figure()
-sns.relplot(
-  data = cv_res,
-  x = "alpha",
-  y = "rmse"
-  ).set(
-    xlabel = "alpha",
-    ylabel = "CV RMSE",
-    xscale = "log"
-);
-plt.show()
-```
-
-Best CV RMSE:
-```{python}
--search.best_score_
-```
 
 #### R
 
@@ -440,6 +404,57 @@ best_enet <- enet_fit %>%
 best_enet
 ```
 
+#### Python
+
+Set up CV partitions and CV criterion.
+```{python}
+from sklearn.model_selection import GridSearchCV
+
+# Set up CV
+n_folds = 10
+search = GridSearchCV(
+  pipe,
+  tuned_parameters,
+  cv = n_folds, 
+  scoring = "neg_root_mean_squared_error",
+  # Refit the best model on the whole data set
+  refit = True
+  )
+```
+
+Fit CV. This is typically the most time-consuming step.
+```{python}
+# Fit CV
+search.fit(X_other, y_other)
+```
+
+Visualize CV results (TODO).
+```{python}
+#| eval: false
+#| code-fold: true
+cv_res = pd.DataFrame({
+  "alpha": alphas,
+  "rmse": -search.cv_results_["mean_test_score"]
+  })
+
+plt.figure()
+sns.relplot(
+  data = cv_res,
+  x = "alpha",
+  y = "rmse"
+  ).set(
+    xlabel = "alpha",
+    ylabel = "CV RMSE",
+    xscale = "log"
+);
+plt.show()
+```
+
+Best CV RMSE:
+```{python}
+-search.best_score_
+```
+
 :::
 
 ## Finalize our model
@@ -448,19 +463,7 @@ Now we are done tuning. Finally, let’s fit this final model to the whole train
 
 ::: {.panel-tabset}
 
-#### Python
 
-Since we called `GridSearchCV` with `refit = True`, the best model fit on the whole non-test data is readily available.
-```{python}
-search.best_estimator_
-```
-
-The final prediction RMSE on the test set is
-```{python}
-from sklearn.metrics import mean_squared_error
-
-mean_squared_error(y_test, search.best_estimator_.predict(X_test), squared = False)
-```
 
 
 #### R
@@ -480,6 +483,20 @@ final_fit
 
 # Test metrics
 final_fit %>% collect_metrics()
+```
+
+#### Python
+
+Since we called `GridSearchCV` with `refit = True`, the best model fit on the whole non-test data is readily available.
+```{python}
+search.best_estimator_
+```
+
+The final prediction RMSE on the test set is
+```{python}
+from sklearn.metrics import mean_squared_error
+
+mean_squared_error(y_test, search.best_estimator_.predict(X_test), squared = False)
 ```
 
 :::
