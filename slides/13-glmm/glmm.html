@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr. Jin Zhou @ UCLA">
-<meta name="dcterms.date" content="2024-05-21">
+<meta name="dcterms.date" content="2024-05-23">
 
 <title>Mixed Effects Models for Nonnormal Responses (ELMR Chapter 13)</title>
 <style>
@@ -2651,7 +2651,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 21, 2024</p>
+      <p class="date">May 23, 2024</p>
     </div>
   </div>
   
@@ -2714,7 +2714,7 @@ f(y_i \mid \theta_i, \phi) = \exp \left[ \frac{y \theta_i - b(\theta_i)}{a(\phi)
 \]</span> If we use the <strong>canonical link</strong>, then <span class="math display">\[
 \theta_i = g(\mu_i) = \eta_i,
 \]</span> where <span class="math inline">\(\mu_i = \mathbb{E} Y_i\)</span>. Now let <span class="math display">\[
-\eta_i = \mathbf{x}_i^T \boldsymbol{\beta} + \mathbf{z}_i^T \boldsymbol{\gamma},
+\eta_i = \mathbf{x}_i^T \boldsymbol{\beta} + \mathbf{z}_i^T \boldsymbol{\gamma}_i,
 \]</span> where <span class="math inline">\(\boldsymbol{\beta}\)</span> is the fixed effects and <span class="math inline">\(\boldsymbol{\gamma}\)</span> is the random effects with density <span class="math inline">\(h(\gamma \mid \boldsymbol{\Sigma})\)</span>. (Typically we assume multivariate normal with mean 0 and covariance <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.) Then the likelihood is <span class="math display">\[
 L(\boldsymbol{\beta}, \phi, \boldsymbol{\Sigma}) = \prod_{i=1}^n \int f(y_i \mid \boldsymbol{\beta}, \phi, \boldsymbol{\gamma}) h(\boldsymbol{\gamma} \mid \boldsymbol{\Sigma}) \, d \boldsymbol{\gamma}
 \]</span> and the log-likelihood is <span class="math display">\[
