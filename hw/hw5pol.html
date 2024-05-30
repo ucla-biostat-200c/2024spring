@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-05-27">
+<meta name="dcterms.date" content="2024-05-30">
 
 <title>Biostat 200C Homework 5</title>
 <style>
@@ -2584,7 +2584,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 27, 2024</p>
+      <p class="date">May 30, 2024</p>
     </div>
   </div>
   
@@ -2669,18 +2669,31 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}, \quad i=1,\ldots,a, \quad j=1,\ldots,n.
 \]</span> (same as ANOVA estimate) and <span class="math display">\[
 \hat \sigma_{\alpha}^2 = \frac{\text{SSA}}{an} - \frac{\text{SSE}}{an(n-1)}.
 \]</span></p></li>
-<li><p>REML. Let <span class="math inline">\(K \in \mathbb{R}^{n \times (n-1)}\)</span> be a basis of <span class="math inline">\({\cal N}(X^T)\)</span>. Then <span class="math display">\[
+<li><p>REML. Let <span class="math inline">\(K \in \mathbb{R}^{n \times (n-1)}\)</span> (as fixed effects only contain intercept) be a basis of <span class="math inline">\({\cal N}(X^T)\)</span>. Then <span class="math display">\[
 K^T Y \sim N(0, K^T \Omega K).
 \]</span> and the log-likelihood is <span class="math display">\[
 \, - \frac 12 \log \det K^T \Omega K - \frac 12 y^T K(K^T \Omega K)^{-1} K^T y.
 \]</span> Setting the derivative with respect to <span class="math inline">\(\sigma_\alpha^2\)</span> and <span class="math inline">\(\sigma_\epsilon^2\)</span> to 0 yields the estimation equations <span class="math display">\[\begin{eqnarray*}
   \frac{\partial}{\partial \sigma_{\epsilon}^2} \ell &amp;=&amp; - \frac 12 \operatorname{tr} [K(K^T \Omega K)^{-1} K^T] - \frac 12 y^t K(K^T \Omega K)^{-1} K^T K(K^T \Omega K)^{-1} K^T y = 0, \\
   \frac{\partial}{\partial \sigma_{\alpha}^2} \ell &amp;=&amp; - \frac 12 \operatorname{tr} [K(K^T \Omega K)^{-1} K^T Z Z^T] - \frac 12 y^t K(K^T \Omega K)^{-1} K^T Z Z^T K(K^T \Omega K)^{-1} K^T y = 0.
-\end{eqnarray*}\]</span> It can be shown <span class="math display">\[
-K(K^T \Omega K)^{-1} K^T = \Omega^{-1} - \Omega^{-1} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1},
-\]</span> since both sizes of <span class="math display">\[
+\end{eqnarray*}\]</span></p></li>
+</ol>
+<p>We need to show: <span class="math display">\[
+K(K^T \Omega K)^{-1} K^T = \Omega^{-1} - \Omega^{-1} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1}.
+\]</span> This is because (1) the two sides <span class="math display">\[
 \Omega^{1/2} K(K^T \Omega K)^{-1} K^T \Omega^{1/2} = I - \Omega^{-1/2} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1/2}
-\]</span> are the (unique) orthogonal projection to the space <span class="math inline">\({\cal C}(X)^\perp = {\cal N}(X^T)\)</span>. Let’s simplify <span class="math display">\[\begin{eqnarray*}
+\]</span> are the (unique) orthogonal projection to the space <span class="math inline">\({\cal C}(X)^\perp = {\cal N}(X^T)\)</span>. Or we can prove the relationship as the follows:</p>
+<p>Both <span class="math inline">\(KK^{+} := K(K^T K)^{-1}K^T\)</span> and <span class="math inline">\(XX^{+}:=X(X^TX)^{-1}X^T\)</span> are symmetric and idempotent, and <span class="math inline">\(K^TX=0\)</span>. Therefore <span class="math inline">\(KK^{+} X = 0\)</span> and <span class="math inline">\(XX^{+} K = 0\)</span>. Hence <span class="math inline">\(T = I-KK^{+}-XX^{+}\)</span> is symmetric and idempotent. We have <span class="math display">\[\begin{eqnarray*}
+&amp;\mbox{tr}(TT^T) &amp;= \mbox{tr}(T^2) = \mbox{tr}(T)  \\
+&amp; &amp;=N-r_x-r_k = N-r_x-(N-r_x)=0.
+\end{eqnarray*}\]</span> But <span class="math inline">\(T\)</span> is real, so that <span class="math inline">\(\mbox{tr}(TT^T)=0\)</span> implies that <span class="math inline">\(T=0\)</span>. Therefore <span class="math inline">\(KK^{+}=I-XX^{+}\)</span>. Because <span class="math inline">\(\Omega=(\Omega^{1/2})^2\)</span>. Then, since <span class="math inline">\((\Omega^{1/2}K)^T\Omega^{-1/2}X=0\)</span>, because <span class="math inline">\(K^TX=0\)</span>, we can replace <span class="math inline">\(K\)</span> and <span class="math inline">\(X\)</span> by <span class="math inline">\(\Omega^{1/2}K\)</span> and <span class="math inline">\(\Omega^{-1/2}X\)</span> respectively.</p>
+<p>Rewrite <span class="math inline">\(KK^{+}=I-XX^{+}\)</span> as <span class="math display">\[
+I-X(X^TX)^{-1}X^T = K(K^TK)^{-1}K^T.
+\]</span> and replace relevant terms by <span class="math inline">\(\Omega^{1/2}K\)</span> and <span class="math inline">\(\Omega^{-1/2}X\)</span>, we get <span class="math display">\[
+I-\Omega^{-1/2}X(X^T\Omega^{-1}X)^{-1}X^T\Omega^{-1/2} = \Omega^{1/2}K(K^T\Omega K)^{-1}K^T\Omega^{1/2}.
+\]</span> i.e., <span class="math display">\[
+\Omega^{-1} - \Omega^{-1} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1} = K(K^T \Omega K)^{-1} K^T.
+\]</span> Let’s simplify <span class="math display">\[\begin{eqnarray*}
 \mathbf{A} &amp;:=&amp; \Omega^{-1} - \Omega^{-1} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1} \\
 &amp;=&amp; \Omega^{-1} - \frac{(1 + n \lambda) \sigma_{\epsilon}^2}{na} \Omega^{-1} X X^T \Omega^{-1} \\
 &amp;=&amp; \Omega^{-1} - \frac{(1 + n \lambda) \sigma_{\epsilon}^2}{na} \left( \frac{\sigma_{\epsilon}^{-2}}{1 + n \lambda} \right)^2 \mathbf{1}_{na} \mathbf{1}_{na}^T \\
@@ -2694,8 +2707,7 @@ K(K^T \Omega K)^{-1} K^T = \Omega^{-1} - \Omega^{-1} X (X^T \Omega^{-1} X)^{-1} 
   \frac{\partial}{\partial \sigma_{\epsilon}^2} \ell &amp;=&amp; - \frac 12 \operatorname{tr} \mathbf{A} - \frac 12 \mathbf{y}^T \mathbf{A} \mathbf{A} \mathbf{y} \\
   &amp;=&amp; - \frac{na}{2} \sigma_{\epsilon}^{-2} + \frac{na\lambda}{2(1 + n \lambda)} \sigma_{\epsilon}^{-2} + \frac{1}{2(1 + n\lambda)} \sigma_{\epsilon}^{-2} \\
   &amp;=&amp; 0.
-\end{eqnarray*}\]</span></p></li>
-</ol>
+\end{eqnarray*}\]</span></p>
 </section>
 </section>
 <section id="estimation-of-random-effects" class="level2" data-number="2">

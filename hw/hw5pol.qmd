@@ -141,7 +141,7 @@ $$
 \hat \sigma_{\alpha}^2 = \frac{\text{SSA}}{an} - \frac{\text{SSE}}{an(n-1)}.
 $$
 
-3. REML. Let $K \in \mathbb{R}^{n \times (n-1)}$ be a basis of ${\cal N}(X^T)$. Then 
+3. REML. Let $K \in \mathbb{R}^{n \times (n-1)}$ (as fixed effects only contain intercept) be a basis of ${\cal N}(X^T)$. Then 
 $$
 K^T Y \sim N(0, K^T \Omega K).
 $$
@@ -154,15 +154,37 @@ Setting the derivative with respect to $\sigma_\alpha^2$ and $\sigma_\epsilon^2$
   \frac{\partial}{\partial \sigma_{\epsilon}^2} \ell &=& - \frac 12 \operatorname{tr} [K(K^T \Omega K)^{-1} K^T] - \frac 12 y^t K(K^T \Omega K)^{-1} K^T K(K^T \Omega K)^{-1} K^T y = 0, \\
   \frac{\partial}{\partial \sigma_{\alpha}^2} \ell &=& - \frac 12 \operatorname{tr} [K(K^T \Omega K)^{-1} K^T Z Z^T] - \frac 12 y^t K(K^T \Omega K)^{-1} K^T Z Z^T K(K^T \Omega K)^{-1} K^T y = 0.
 \end{eqnarray*}
-It can be shown
+
+We need to show:
 $$
-K(K^T \Omega K)^{-1} K^T = \Omega^{-1} - \Omega^{-1} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1},
+K(K^T \Omega K)^{-1} K^T = \Omega^{-1} - \Omega^{-1} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1}.
 $$
-since both sizes of
+This is because (1) the two sides
 $$
 \Omega^{1/2} K(K^T \Omega K)^{-1} K^T \Omega^{1/2} = I - \Omega^{-1/2} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1/2}
 $$
-are the (unique) orthogonal projection to the space ${\cal C}(X)^\perp = {\cal N}(X^T)$. Let's simplify
+are the (unique) orthogonal projection to the space ${\cal C}(X)^\perp = {\cal N}(X^T)$. Or we can prove the relationship as the follows:
+
+Both $KK^{+} := K(K^T K)^{-1}K^T$ and $XX^{+}:=X(X^TX)^{-1}X^T$ are symmetric and idempotent, and $K^TX=0$. Therefore $KK^{+} X = 0$ and $XX^{+} K = 0$. Hence $T = I-KK^{+}-XX^{+}$ is symmetric and idempotent. We have
+\begin{eqnarray*}
+&\mbox{tr}(TT^T) &= \mbox{tr}(T^2) = \mbox{tr}(T)  \\
+& &=N-r_x-r_k = N-r_x-(N-r_x)=0.
+\end{eqnarray*}
+But $T$ is real, so that $\mbox{tr}(TT^T)=0$ implies that $T=0$. Therefore $KK^{+}=I-XX^{+}$. Because $\Omega=(\Omega^{1/2})^2$. Then, since $(\Omega^{1/2}K)^T\Omega^{-1/2}X=0$, because $K^TX=0$, we can replace $K$ and $X$ by $\Omega^{1/2}K$ and $\Omega^{-1/2}X$ respectively. 
+
+Rewrite $KK^{+}=I-XX^{+}$ as
+$$
+I-X(X^TX)^{-1}X^T = K(K^TK)^{-1}K^T.
+$$
+and replace relevant terms by $\Omega^{1/2}K$ and $\Omega^{-1/2}X$, we get
+$$
+ I-\Omega^{-1/2}X(X^T\Omega^{-1}X)^{-1}X^T\Omega^{-1/2} = \Omega^{1/2}K(K^T\Omega K)^{-1}K^T\Omega^{1/2}.
+$$
+i.e.,
+$$
+\Omega^{-1} - \Omega^{-1} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1} = K(K^T \Omega K)^{-1} K^T.
+$$
+Let's simplify
 \begin{eqnarray*}
 \mathbf{A} &:=& \Omega^{-1} - \Omega^{-1} X (X^T \Omega^{-1} X)^{-1} X^T \Omega^{-1} \\
 &=& \Omega^{-1} - \frac{(1 + n \lambda) \sigma_{\epsilon}^2}{na} \Omega^{-1} X X^T \Omega^{-1} \\

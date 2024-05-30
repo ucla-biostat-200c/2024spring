@@ -72,6 +72,8 @@ $$
 2. For the balanced one-way ANOVA random effects model, show that the posterior mean of random effects is always a constant (less than 1) multiplying the corresponding fixed effects estimate.
 
 
-## Q3. ELMR Exercise 11.1 (p251)
+## Q3. ELMR Exercise 11.1 (p251) 
+- **Do not need to work on Bayesian related questions**
 
-## Q4. ELMR Exercise 13.1 (p295)
+## Q4. ELMR Exercise 13.1 (p295) 
+- **Do not need to work on Bayesian related questions**
