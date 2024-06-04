@@ -133,7 +133,7 @@ for (bw in c(0.1, 0.5, 2)) {
 }
 ```
 
-- Cross-valiation (CV) choose the $\lambda$ that minimizes the criterion
+- Cross-validation (CV) choose the $\lambda$ that minimizes the criterion
 $$
 \text{CV}(\lambda) = \frac 1n \sum_{j=1}^n [y_j - \hat f_{\lambda(j)}(x_j)]^2,
 $$
