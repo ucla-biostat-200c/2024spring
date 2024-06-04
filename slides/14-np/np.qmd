@@ -118,7 +118,7 @@ K(x) = \begin{cases}
 \end{cases}.
 $$
 
-![](https://upload.wikimedia.org/wikipedia/commons/4/47/Kernels.svg)
+![](Kernels.svg) 
 
 
 - Choice of smoothing parameter $\lambda$. Small $\lambda$ gives more wiggly curves, while large $\lambda$ yields smoother curves. 
