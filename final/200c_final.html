@@ -350,7 +350,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Biostat 200C Final</h1>
-<h3 class="subtitle">Due June 16, 2023 @ 11:59PM</h3>
+<h3 class="subtitle">Due Fri. June 14, 2024 @ 11:59PM</h3>
 <h4 class="author">FirstName LastName (UID XXX-XXX-XXX)</h4>
 
 </div>
@@ -368,8 +368,8 @@ Problem*</a></li>
 </ul>
 </div>
 
-<p>This is an open book test. Helping or asking help from others is
-considered plagiarism.</p>
+<p>This is a take-home and an open book final. Helping or asking help
+from others is considered plagiarism.</p>
 <div id="q1.-25-pts-survival-data-analysis" class="section level2">
 <h2>Q1. (25 pts) Survival data analysis</h2>
 <p>Consider following survival times of 25 patients with no history of
@@ -722,7 +722,7 @@ unafflicted nail length is a better outcome. Also recorded on each
 subject was gender and an indicator of the frequency with which the
 subject visited a gym or health club (and hence might use shared locker
 rooms and/or showers).</p>
-<p>The data are available in the file <code>toenail.txt</code> from <a href="https://ucla.box.com/s/brb3vz4nwoq8pjkcutxncymqw583d39l">here</a>.
+<p>The data are available in the file <code>toenail.txt</code> from <a href="https://github.com/ucla-biostat-200c/2024spring/tree/master/hw/datasets">here</a>.
 The data are presented in the form of one data record per observation;
 the columns of the data set are as follows:</p>
 <ol style="list-style-type: decimal">
@@ -792,7 +792,7 @@ of the number of new skin cancers per year. You may assume that the
 counts of new skin cancers, <span class="math inline">\(Y\)</span>, are
 from exact one-year periods (so that no offset term is needed).</p>
 <p>Selected data from the study are in the dataset called
-<code>skin.txt</code> and is available <a href="https://ucla.box.com/s/brb3vz4nwoq8pjkcutxncymqw583d39l">here</a>.
+<code>skin.txt</code> and is available <a href="https://github.com/ucla-biostat-200c/2024spring/tree/master/hw/datasets">here</a>.
 Each row of the dataset contains the following 9 variables: ID, Center,
 Age, Skin, Gender, Exposure, <span class="math inline">\(Y\)</span>,
 Treatment, Year. These variables take values as follows:</p>
@@ -922,103 +922,6 @@ your mid-term grade will be reweighted to be
 <code>New Midterm Grade = .8*Old Midterm Grade + .2*Extra Credit Problem</code></p>
 </blockquote>
 </blockquote>
-<p>The following table shows numbers of beetles dead after five hours
-exposure to gaseous carbon disulphide at various concentrations.</p>
-<pre class="r"><code>(beetle &lt;- tibble(dose = c(1.6907, 1.7242, 1.7552, 1.7842, 1.8113, 1.8369, 1.8610, 1.8839),
-                 beetles = c(59, 60, 62, 56, 63, 59, 62, 60),
-                 killed = c(6, 13, 18, 28, 52, 53, 61, 60)))</code></pre>
-<pre><code>## # A tibble: 8 × 3
-##    dose beetles killed
-##   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-## 1  1.69      59      6
-## 2  1.72      60     13
-## 3  1.76      62     18
-## 4  1.78      56     28
-## 5  1.81      63     52
-## 6  1.84      59     53
-## 7  1.86      62     61
-## 8  1.88      60     60</code></pre>
-<ol style="list-style-type: decimal">
-<li><p>Let <span class="math inline">\(x_i\)</span> be
-<code>dose</code>, <span class="math inline">\(n_i\)</span> be the
-number of beetles, and <span class="math inline">\(y_i\)</span> be the
-number of killed. Plot the proportions <span class="math inline">\(p_i =
-y_i/n_i\)</span> plotted against dose <span class="math inline">\(x_i\)</span>.</p></li>
-<li><p>We fit a logistic model to understand the relationship between
-dose and the probably of being killed. Write out the logistic model and
-associated log-likelihood function.</p></li>
-<li><p>Derive the scores, <span class="math inline">\(\mathbf{U}\)</span>, with respect to parameters in
-the above logistic model. (Hint there are two parameters)</p></li>
-<li><p>Derive the information matrix, <span class="math inline">\(\mathcal{I}\)</span> (Hint, a <span class="math inline">\(2\times 2\)</span> matrix)</p></li>
-<li><p>Maximum likelihood estimates are obtained by solving the
-iterative equation</p></li>
-</ol>
-<p><span class="math display">\[
-\mathcal{I}^{(m-1)}\mathbf{b}^{(m)} =
-\mathcal{I}^{(m-1)}\mathbf{b}^{(m-1)}+ \mathbf{U}^{(m-1)}
-\]</span> where <span class="math inline">\(\mathbf{b}\)</span> is the
-vector of estimates. Starting with <span class="math inline">\(\mathbf{b}^{(0)} = 0\)</span>, implement this
-algorithm to show successive iterations are</p>
-<table>
-<thead>
-<tr class="header">
-<th>Iterations</th>
-<th><span class="math inline">\(\beta_1\)</span></th>
-<th><span class="math inline">\(\beta_2\)</span></th>
-<th>log-likelihood</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>-333.404</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>-37.856</td>
-<td>21.337</td>
-<td>-200.010</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td>-53.853</td>
-<td>30.384</td>
-<td>-187.274</td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>4</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>5</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>6</td>
-<td>-60.717</td>
-<td>34.270</td>
-<td>-186.235</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><p>If after 6 steps, the model converged. For this final model,
-calculate the deviance. What is the distribution the deviance
-has?</p></li>
-<li><p>Does the model fit the data well? justify your answer.</p></li>
-</ul>
 </div>
 
 

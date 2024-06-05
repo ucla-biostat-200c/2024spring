@@ -1,7 +1,7 @@
 ---
 title: "Biostat 200C Final"
 author: "FirstName LastName (UID XXX-XXX-XXX)"
-subtitle: Due June 16, 2023 @ 11:59PM
+subtitle: Due Fri. June 14, 2024 @ 11:59PM
 output:
   html_document:
     toc: yes
