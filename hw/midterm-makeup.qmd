@@ -21,7 +21,7 @@ knitr:
     message: FALSE
     cache: false
 ---
-# Count Data Example - Microbiome
+# Count Data Example - Microbiome (60 pts)
 
 ## Introduction
 - This data package contains the information used to run the analyses found in "[Diarrhea in young children from low-income countries leads to large-scale alterations in
@@ -327,7 +327,7 @@ library(MASS)
 
 results_genus_nb2 <- 
   map_df(genusnames, function(response) {
-    print(response)
+  #  print(response)
     model <- glm(as.formula(paste(response, "~ Type")), 
                  family = negative.binomial(20),
                  data = genus_tbl_t)
@@ -514,6 +514,6 @@ type1e_tbl = tibble(
 median(type1e_tbl$etype_1_error)
 ```
 
-# Re-do midterm questions
+# Re-do midterm questions (40 pts)
 ## Question 2 and 8
 ## Optional: Question 4, 6, 9

@@ -2609,7 +2609,7 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#count-data-example---microbiome" id="toc-count-data-example---microbiome" class="nav-link active" data-scroll-target="#count-data-example---microbiome"><span class="toc-section-number">1</span>  Count Data Example - Microbiome</a>
+  <li><a href="#count-data-example---microbiome-60-pts" id="toc-count-data-example---microbiome-60-pts" class="nav-link active" data-scroll-target="#count-data-example---microbiome-60-pts"><span class="toc-section-number">1</span>  Count Data Example - Microbiome (60 pts)</a>
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="toc-section-number">1.1</span>  Introduction</a></li>
   <li><a href="#microbiome-data-background" id="toc-microbiome-data-background" class="nav-link" data-scroll-target="#microbiome-data-background"><span class="toc-section-number">1.2</span>  Microbiome data background</a></li>
@@ -2640,7 +2640,7 @@ vertical-align: -.125em;
   </ul></li>
   </ul></li>
   </ul></li>
-  <li><a href="#re-do-midterm-questions" id="toc-re-do-midterm-questions" class="nav-link" data-scroll-target="#re-do-midterm-questions"><span class="toc-section-number">2</span>  Re-do midterm questions</a>
+  <li><a href="#re-do-midterm-questions-40-pts" id="toc-re-do-midterm-questions-40-pts" class="nav-link" data-scroll-target="#re-do-midterm-questions-40-pts"><span class="toc-section-number">2</span>  Re-do midterm questions (40 pts)</a>
   <ul>
   <li><a href="#question-2-and-8" id="toc-question-2-and-8" class="nav-link" data-scroll-target="#question-2-and-8"><span class="toc-section-number">2.1</span>  Question 2 and 8</a></li>
   <li><a href="#optional-question-4-6-9" id="toc-optional-question-4-6-9" class="nav-link" data-scroll-target="#optional-question-4-6-9"><span class="toc-section-number">2.2</span>  Optional: Question 4, 6, 9</a></li>
@@ -2682,8 +2682,8 @@ vertical-align: -.125em;
 
 </header>
 
-<section id="count-data-example---microbiome" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Count Data Example - Microbiome</h1>
+<section id="count-data-example---microbiome-60-pts" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Count Data Example - Microbiome (60 pts)</h1>
 <section id="introduction" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
 <ul>
@@ -3167,7 +3167,7 @@ Annotation:  </code></pre>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>results_genus_nb2 <span class="ot">&lt;-</span> </span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(genusnames, <span class="cf">function</span>(response) {</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(response)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  print(response)</span></span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(response, <span class="st">&quot;~ Type&quot;</span>)), </span>
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="fu">negative.binomial</span>(<span class="dv">20</span>),</span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> genus_tbl_t)</span>
@@ -3176,53 +3176,11 @@ Annotation:  </code></pre>
 <span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">response_variable =</span> response)</span>
 <span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    }) <span class="sc">%&gt;%</span> </span>
 <span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;TypeControl&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;Acinetobacter&quot;
-[1] &quot;Alicyclobacillus&quot;
-[1] &quot;Bacteroides&quot;
-[1] &quot;Bifidobacterium&quot;
-[1] &quot;Blautia&quot;
-[1] &quot;Brachyspira&quot;
-[1] &quot;Campylobacter&quot;
-[1] &quot;Catenibacterium&quot;
-[1] &quot;Citrobacter&quot;
-[1] &quot;Clostridium&quot;
-[1] &quot;Collinsella&quot;
-[1] &quot;Coprococcus&quot;
-[1] &quot;Coriobacterium&quot;
-[1] &quot;Dialister&quot;
-[1] &quot;Dorea&quot;
-[1] &quot;Enterobacter&quot;
-[1] &quot;Enterococcus&quot;
-[1] &quot;Escherichia&quot;
-[1] &quot;Eubacterium&quot;
-[1] &quot;Faecalibacterium&quot;
-[1] &quot;Fusobacterium&quot;
-[1] &quot;Granulicatella&quot;
-[1] &quot;Haemophilus&quot;
-[1] &quot;Klebsiella&quot;
-[1] &quot;Lactobacillus&quot;
-[1] &quot;Lactococcus&quot;
-[1] &quot;Leuconostoc&quot;
-[1] &quot;Megamonas&quot;
-[1] &quot;Megasphaera&quot;
-[1] &quot;Neisseria&quot;
-[1] &quot;Parabacteroides&quot;
-[1] &quot;Prevotella&quot;
-[1] &quot;Roseburia&quot;
-[1] &quot;Rothia&quot;
-[1] &quot;Ruminococcus&quot;
-[1] &quot;Sarcina&quot;
-[1] &quot;Shigella&quot;
-[1] &quot;Streptococcus&quot;
-[1] &quot;Sutterella&quot;
-[1] &quot;Veillonella&quot;
-[1] &quot;Weissella&quot;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>results_genus_nb2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">41</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(response_variable, p.value) <span class="sc">%&gt;%</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) </span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>results_genus_nb2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">41</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(response_variable, p.value) <span class="sc">%&gt;%</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 17 × 2
    response_variable  p.value
@@ -3253,22 +3211,22 @@ Annotation:  </code></pre>
 <li>Quasipoisson regression model</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>results_species_qpoisson <span class="ot">&lt;-</span> </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="fu">names</span>(species_tbl_t)[<span class="dv">2</span><span class="sc">:</span><span class="dv">102</span>], <span class="cf">function</span>(response) {</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">&quot;`&quot;</span>, response, <span class="st">&quot;`&quot;</span>, <span class="st">&quot;~ Type&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)), </span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> species_tbl_t, </span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> quasipoisson)</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>(model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Add a column for the response variable</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">response_variable =</span> response)</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    }) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;TypeControl&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) </span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>results_species_qpoisson <span class="sc">%&gt;%</span> </span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">102</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(response_variable, p.value) <span class="sc">%&gt;%</span></span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>results_species_qpoisson <span class="ot">&lt;-</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="fu">names</span>(species_tbl_t)[<span class="dv">2</span><span class="sc">:</span><span class="dv">102</span>], <span class="cf">function</span>(response) {</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">&quot;`&quot;</span>, response, <span class="st">&quot;`&quot;</span>, <span class="st">&quot;~ Type&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)), </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> species_tbl_t, </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> quasipoisson)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>(model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Add a column for the response variable</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">response_variable =</span> response)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    }) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;TypeControl&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value) </span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>results_species_qpoisson <span class="sc">%&gt;%</span> </span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">102</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(response_variable, p.value) <span class="sc">%&gt;%</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 2
    response_variable                    p.value
@@ -3299,18 +3257,18 @@ Annotation:  </code></pre>
 <li>Negative binomial regression model</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>results_species_nb2 <span class="ot">&lt;-</span> </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(speciesnames, <span class="cf">function</span>(response) {</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(response)</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">&quot;`&quot;</span>, response, <span class="st">&quot;`&quot;</span>, <span class="st">&quot;~ Type&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)), </span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="fu">negative.binomial</span>(<span class="dv">20</span>),</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> species_tbl_t)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>(model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Add a column for the response variable</span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">response_variable =</span> response)</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    }) <span class="sc">%&gt;%</span> </span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;TypeControl&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>results_species_nb2 <span class="ot">&lt;-</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(speciesnames, <span class="cf">function</span>(response) {</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(response)</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">&quot;`&quot;</span>, response, <span class="st">&quot;`&quot;</span>, <span class="st">&quot;~ Type&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)), </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="fu">negative.binomial</span>(<span class="dv">20</span>),</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> species_tbl_t)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>(model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Add a column for the response variable</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">response_variable =</span> response)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    }) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;TypeControl&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(p.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -3331,6 +3289,40 @@ Annotation:  </code></pre>
 <li>Quasipoisson regression model</li>
 </ul>
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of columns </span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>num_columns <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>num_rows <span class="ot">&lt;-</span> <span class="fu">dim</span>(genus_tbl_t)[<span class="dv">1</span>] </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the tibble with 100 columns of random normal values</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>type1e <span class="ot">&lt;-</span> <span class="cf">function</span>(genusname) {</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  sim_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> genus_tbl_t <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(genusname)) <span class="sc">%&gt;%</span> pull,</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, num_columns <span class="sc">*</span> num_rows, <span class="at">replace=</span>T, <span class="at">prob=</span><span class="fu">c</span>(p_control, p_case)), </span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">nrow =</span> num_rows, <span class="at">ncol =</span> num_columns, </span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, <span class="dv">1</span><span class="sc">:</span>num_columns)))))</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="fu">names</span>(sim_tbl)[<span class="sc">-</span><span class="dv">1</span>], </span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">~</span> <span class="fu">tidy</span>(<span class="fu">glm</span>(<span class="fu">reformulate</span>(.x, <span class="at">response =</span> <span class="st">&quot;y&quot;</span>), </span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> sim_tbl,                              </span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> quasipoisson)), </span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.id =</span> <span class="st">&quot;variable&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>)</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(results<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>type1e_tbl <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">genus_name =</span> genusnames, </span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">etype_1_error =</span> <span class="fu">map_dbl</span>(genusnames, type1e)) </span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(type1e_tbl<span class="sc">$</span>etype_1_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05</code></pre>
+</div>
+</div>
+<ul>
+<li>Negative binomial regression model</li>
+</ul>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of columns </span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>num_columns <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>num_rows <span class="ot">&lt;-</span> <span class="fu">dim</span>(genus_tbl_t)[<span class="dv">1</span>] </span>
@@ -3347,51 +3339,17 @@ Annotation:  </code></pre>
 <span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="fu">names</span>(sim_tbl)[<span class="sc">-</span><span class="dv">1</span>], </span>
 <span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">~</span> <span class="fu">tidy</span>(<span class="fu">glm</span>(<span class="fu">reformulate</span>(.x, <span class="at">response =</span> <span class="st">&quot;y&quot;</span>), </span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> sim_tbl,                              </span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> quasipoisson)), </span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.id =</span> <span class="st">&quot;variable&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>)</span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(results<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>type1e_tbl <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">genus_name =</span> genusnames, </span>
-<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">etype_1_error =</span> <span class="fu">map_dbl</span>(genusnames, type1e)) </span>
-<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(type1e_tbl<span class="sc">$</span>etype_1_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.05</code></pre>
-</div>
-</div>
-<ul>
-<li>Negative binomial regression model</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of columns </span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>num_columns <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>num_rows <span class="ot">&lt;-</span> <span class="fu">dim</span>(genus_tbl_t)[<span class="dv">1</span>] </span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the tibble with 100 columns of random normal values</span></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>type1e <span class="ot">&lt;-</span> <span class="cf">function</span>(genusname) {</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  sim_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> genus_tbl_t <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(genusname)) <span class="sc">%&gt;%</span> pull,</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, num_columns <span class="sc">*</span> num_rows, <span class="at">replace=</span>T, <span class="at">prob=</span><span class="fu">c</span>(p_control, p_case)), </span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">nrow =</span> num_rows, <span class="at">ncol =</span> num_columns, </span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, <span class="dv">1</span><span class="sc">:</span>num_columns)))))</span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="fu">names</span>(sim_tbl)[<span class="sc">-</span><span class="dv">1</span>], </span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">~</span> <span class="fu">tidy</span>(<span class="fu">glm</span>(<span class="fu">reformulate</span>(.x, <span class="at">response =</span> <span class="st">&quot;y&quot;</span>), </span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> sim_tbl, </span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> <span class="fu">negative.binomial</span>(<span class="dv">20</span>),</span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>                             <span class="at">control =</span> <span class="fu">glm.control</span>(<span class="at">maxit =</span> <span class="dv">100</span>))), </span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.id =</span> <span class="st">&quot;variable&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>)</span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(results<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>type1e_tbl <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">genus_name =</span> genusnames, </span>
-<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">etype_1_error =</span> <span class="fu">map_dbl</span>(genusnames, type1e)) </span>
-<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(type1e_tbl<span class="sc">$</span>etype_1_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> sim_tbl, </span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> <span class="fu">negative.binomial</span>(<span class="dv">20</span>),</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>                             <span class="at">control =</span> <span class="fu">glm.control</span>(<span class="at">maxit =</span> <span class="dv">100</span>))), </span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.id =</span> <span class="st">&quot;variable&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>)</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(results<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>type1e_tbl <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">genus_name =</span> genusnames, </span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">etype_1_error =</span> <span class="fu">map_dbl</span>(genusnames, type1e)) </span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(type1e_tbl<span class="sc">$</span>etype_1_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.07</code></pre>
 </div>
@@ -3403,31 +3361,31 @@ Annotation:  </code></pre>
 <li>Quasipoisson regression model</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of columns </span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>num_columns <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>num_rows <span class="ot">&lt;-</span> <span class="dv">992</span> </span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the tibble with 100 columns of random normal values</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>type1e <span class="ot">&lt;-</span> <span class="cf">function</span>(speciesnames) {</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  sim_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> species_tbl_t <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(speciesnames)) <span class="sc">%&gt;%</span> pull,</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, num_columns <span class="sc">*</span> num_rows, <span class="at">replace=</span>T, <span class="at">prob=</span><span class="fu">c</span>(p_control, p_case)), </span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">nrow =</span> num_rows, <span class="at">ncol =</span> num_columns, </span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, <span class="dv">1</span><span class="sc">:</span>num_columns)))))</span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="fu">names</span>(sim_tbl)[<span class="sc">-</span><span class="dv">1</span>], </span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">~</span> <span class="fu">tidy</span>(<span class="fu">glm</span>(<span class="fu">reformulate</span>(.x, <span class="at">response =</span> <span class="st">&quot;y&quot;</span>), </span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> sim_tbl), <span class="at">family =</span> quasipoisson), </span>
-<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.id =</span> <span class="st">&quot;variable&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>)</span>
-<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(results<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span>
-<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>type1e_tbl <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">species_name =</span> <span class="fu">names</span>(species_tbl_t)[<span class="dv">2</span><span class="sc">:</span><span class="dv">102</span>], </span>
-<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">etype_1_error =</span> <span class="fu">map_dbl</span>(<span class="fu">names</span>(species_tbl_t)[<span class="dv">2</span><span class="sc">:</span><span class="dv">102</span>], type1e))</span>
-<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(type1e_tbl<span class="sc">$</span>etype_1_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of columns </span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>num_columns <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>num_rows <span class="ot">&lt;-</span> <span class="dv">992</span> </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the tibble with 100 columns of random normal values</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>type1e <span class="ot">&lt;-</span> <span class="cf">function</span>(speciesnames) {</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  sim_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> species_tbl_t <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(speciesnames)) <span class="sc">%&gt;%</span> pull,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, num_columns <span class="sc">*</span> num_rows, <span class="at">replace=</span>T, <span class="at">prob=</span><span class="fu">c</span>(p_control, p_case)), </span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">nrow =</span> num_rows, <span class="at">ncol =</span> num_columns, </span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, <span class="dv">1</span><span class="sc">:</span>num_columns)))))</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="fu">names</span>(sim_tbl)[<span class="sc">-</span><span class="dv">1</span>], </span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">~</span> <span class="fu">tidy</span>(<span class="fu">glm</span>(<span class="fu">reformulate</span>(.x, <span class="at">response =</span> <span class="st">&quot;y&quot;</span>), </span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> sim_tbl), <span class="at">family =</span> quasipoisson), </span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.id =</span> <span class="st">&quot;variable&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>)</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(results<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>type1e_tbl <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">species_name =</span> <span class="fu">names</span>(species_tbl_t)[<span class="dv">2</span><span class="sc">:</span><span class="dv">102</span>], </span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">etype_1_error =</span> <span class="fu">map_dbl</span>(<span class="fu">names</span>(species_tbl_t)[<span class="dv">2</span><span class="sc">:</span><span class="dv">102</span>], type1e))</span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(type1e_tbl<span class="sc">$</span>etype_1_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.03</code></pre>
 </div>
@@ -3436,35 +3394,35 @@ Annotation:  </code></pre>
 <li>Negative binomial regression model</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of columns</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>num_columns <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>num_rows <span class="ot">&lt;-</span> <span class="dv">992</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the tibble with 100 columns of random normal values</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>type1e <span class="ot">&lt;-</span> <span class="cf">function</span>(speciesname) {</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  sim_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> species_tbl_t <span class="sc">%&gt;%</span> </span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(speciesname)) <span class="sc">%&gt;%</span> pull, </span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(</span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, num_columns <span class="sc">*</span> num_rows, <span class="at">replace=</span>T, <span class="at">prob=</span><span class="fu">c</span>(p_control, p_case)),</span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">nrow =</span> num_rows, <span class="at">ncol =</span> num_columns, </span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, <span class="dv">1</span><span class="sc">:</span>num_columns)))))</span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="fu">names</span>(sim_tbl)[<span class="sc">-</span><span class="dv">1</span>], </span>
-<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">~</span> <span class="fu">tidy</span>(<span class="fu">glm</span>(<span class="fu">reformulate</span>(.x, <span class="at">response =</span> <span class="st">&quot;y&quot;</span>), </span>
-<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> sim_tbl, </span>
-<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> <span class="fu">negative.binomial</span>(<span class="dv">30</span>),</span>
-<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>                             <span class="at">control =</span> <span class="fu">glm.control</span>(<span class="at">maxit =</span> <span class="dv">100</span>))), </span>
-<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.id =</span> <span class="st">&quot;variable&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>)</span>
-<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(results<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span>
-<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>type1e_tbl <span class="ot">=</span> <span class="fu">tibble</span>(</span>
-<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">species_name =</span> speciesnames, </span>
-<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">etype_1_error =</span> <span class="fu">map_dbl</span>(speciesnames, type1e))</span>
-<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(type1e_tbl<span class="sc">$</span>etype_1_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of columns</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>num_columns <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>num_rows <span class="ot">&lt;-</span> <span class="dv">992</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the tibble with 100 columns of random normal values</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>type1e <span class="ot">&lt;-</span> <span class="cf">function</span>(speciesname) {</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  sim_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> species_tbl_t <span class="sc">%&gt;%</span> </span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(speciesname)) <span class="sc">%&gt;%</span> pull, </span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, num_columns <span class="sc">*</span> num_rows, <span class="at">replace=</span>T, <span class="at">prob=</span><span class="fu">c</span>(p_control, p_case)),</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">nrow =</span> num_rows, <span class="at">ncol =</span> num_columns, </span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, <span class="dv">1</span><span class="sc">:</span>num_columns)))))</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="fu">names</span>(sim_tbl)[<span class="sc">-</span><span class="dv">1</span>], </span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">~</span> <span class="fu">tidy</span>(<span class="fu">glm</span>(<span class="fu">reformulate</span>(.x, <span class="at">response =</span> <span class="st">&quot;y&quot;</span>), </span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> sim_tbl, </span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> <span class="fu">negative.binomial</span>(<span class="dv">30</span>),</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>                             <span class="at">control =</span> <span class="fu">glm.control</span>(<span class="at">maxit =</span> <span class="dv">100</span>))), </span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.id =</span> <span class="st">&quot;variable&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>)</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(results<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>type1e_tbl <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">species_name =</span> speciesnames, </span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">etype_1_error =</span> <span class="fu">map_dbl</span>(speciesnames, type1e))</span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(type1e_tbl<span class="sc">$</span>etype_1_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.07</code></pre>
 </div>
@@ -3473,8 +3431,8 @@ Annotation:  </code></pre>
 </section>
 </section>
 </section>
-<section id="re-do-midterm-questions" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Re-do midterm questions</h1>
+<section id="re-do-midterm-questions-40-pts" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Re-do midterm questions (40 pts)</h1>
 <section id="question-2-and-8" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="question-2-and-8"><span class="header-section-number">2.1</span> Question 2 and 8</h2>
 </section>
