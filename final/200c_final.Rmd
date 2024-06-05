@@ -93,7 +93,7 @@ Group 2 (`chr = 1`):
 
 5. Comment on the limitation of exponential model compared to other more flexible models such as Weibull. 
 
-## Q2 (25 pts). (Longitudinal data analysis) 
+## Q2 (25 pts). Longitudinal data analysis 
 
 Onychomycosis, popularly known as toenail fungus, is a fairly common condition that not only can disfigure and sometimes destroy the nail but that also can lead to social and self-image issues for sufferers. Tight-fitting shoes or hosiery, the sharing of common facilities such as showers and locker rooms, and toenail polish are all thought to be implicated in the development of onychomycosis. This question relates to data from a study conducted by researchers that recruited sufferers of a particular type of onychomycosis, dermatophyte onychomycosis. The study conducted by the researchers was focused on comparison of two oral medications, terbinafine (given as 250 mg/day, denoted as treatment 1 below) and itraconazole (given as 200 mg/day, denoted as treatment 2 below). 
 
@@ -134,7 +134,7 @@ The researchers had several questions, which they stated to you as follows:
     
 3. In answering these scientific questions of interest, clearly write out the analytic models you consider for answering these questions (as detailed in the sub-questions). Clearly outline your decision making process for how you selected your final models. Fit your chosen final models and report to the project investigators on the stated scientific questions of interest.
 
-## Q3 (25 pts). (GEE and GLMM) 
+## Q3 (25 pts). GEE and GLMM
 
 The Skin Cancer Prevention Study, a randomized, double-blind, placebo-controlled clinical trial, was designed to test the effectiveness of beta-carotene in the prevention of non-melanoma skin cancer in high-risk subjects. A total of 1,683 subjects were randomized to either placebo or 50mg of beta-carotene per day and were followed for up to 5 years. Subjects were examined once per year and biopsied if a cancer was suspected to determine the number of new cancers per year. The outcome variable, $Y$, is a count of the number of new skin cancers per year. You may assume that the counts of new skin cancers, $Y$, are from exact one-year periods (so that no offset term is needed).
 
