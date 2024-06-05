@@ -1,0 +1,519 @@
+---
+title: "Midterm Make-up Questions"
+author: "Dr. Jin Zhou @ UCLA"
+subtitle: Biostat 200C
+date: today
+format:
+  html:
+    theme: cosmo
+    embed-resources: true
+    number-sections: true
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    code-fold: false
+engine: knitr
+knitr:
+  opts_chunk: 
+    fig.align: 'center'
+    # fig.width: 6
+    # fig.height: 4
+    message: FALSE
+    cache: false
+---
+# Count Data Example - Microbiome
+
+## Introduction
+- This data package contains the information used to run the analyses found in "[Diarrhea in young children from low-income countries leads to large-scale alterations in
+intestinal microbiota composition](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-6-r76)". 
+
+- Measurements are the number of reads annotated for a particular cluster within a given sample followed by filtering. Sequencing was performed on the 454 Flex platform. 
+
+- Data is stored as an `MRexperiment-class` object. The count matrix was generated using DNAclust (http://dnaclust.sourceforge.net/). For more details please refer to the paper. Included in the `MRexperiment` object are the counts, phenotype, and feature information.
+
+## Microbiome data background 
+- The human microbiome is the collection of all the microorganisms living in association with the human body. These communities consist of a variety of microorganisms including eukaryotes, archaea, bacteria, and viruses.
+
+- The human body, consisting of about 10 trillion cells, carries about ten times as many microorganisms in the intestines. The metabolic activities performed by these bacteria resemble those of an organ, leading some to liken gut bacteria to a "forgotten" organ.
+
+- Hight-throughput sequencing technologies have enabled the study of the human microbiome through the use of metagenomic data.
+
+  + OTU (Operational Taxonomic Unit) is a cluster of sequences that are at least 97% similar. OTUs are used to classify sequences into groups that are similar to each other.
+  + OTU counts are used to represent the abundance of each OTU in each sample.
+  + OTU counts can be aggregated at higher phylogentic levels, e.g., species, genus, etc.
+  + The higher the level the less zero-inflated the data is.
+
+![](./ngs16.png)
+
+- Features of microbiome data include
+
+  + Zero-inflated: many OTUs are not observed in many samples
+  + Overdispersed: the variance is larger than the mean
+  + Compositional: the sum of all OTUs in a sample is constant
+  + High-dimensional: large number of OTUs
+
+## Goal of this excercise
+- One goal of microbiome data analysis is to identify the association between microbiome composition and clinical outcomes. In this study, it is case-control status: diarrhea vs non-diarrhea.
+
+- Try the techniques we learned so far to analyze the microbiome data, at genus and species levels, to identify the association between microbiome composition and case-control status. Use the following models:
+
+  + Quasi-Poisson
+  + Negative Binomial
+  + Zero Inflated Poisson
+  + Zero Inflated Negative Binomial
+
+### Question 1
+
+- Compare the results from these models and discuss the pros and cons of each model.
+
+  + Create a table to summarize the significant microbiome clusters from these models.
+  
+```{r}
+tibble::tibble(
+  Model = c("Quasi-Poisson", "Negative Binomial", "Zero Inflated Poisson", "Zero Inflated Negative Binomial"),
+  Significant = c(0, 0, 0, 0)
+)
+```
+  + Create a Venn Diagram to summarize the significant microbiome clusters overlaps from these models.
+  
+
+### Question 2
+- Evaluate empirical type I error rate of the methods adopted in this study for 41 genus and 101 species.
+  + Example code provided below.
+  + Summarize your median (IQR) of the type I error across genus and species in a table.
+
+```{r}
+tibble::tibble(
+  Method = c("Quasi-Poisson", "Negative Binomial", "Zero Inflated Poisson", "Zero Inflated Negative Binomial"),
+  Genus = c("0 IQR()" , "0 IQR()", "0 IQR()", "0 IQR()"),
+  Species = c("0 IQR()", "0 IQR()", "0 IQR()", "0 IQR()")
+)
+```
+### Question 3 
+- Comment on the model fit (Question 1) of different models using, for example, AIC, etc., the control type I error rate, and Summarize esults from the best model.
+
+## Example code
+### Load required packages 
+```{r}
+# if (!require("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+# BiocManager::install("msd16s")
+
+# BiocManager::install("metagenomeSeq")
+suppressMessages(library(metagenomeSeq))
+library(msd16s)
+library(tidyverse)
+library(broom)
+```
+
+### Load data and process
+```{r}
+data(msd16s)
+msd16s
+```
+The phenotype information can be accessed with the phenoData and pData methods:
+```{r}
+phenoData(msd16s)
+
+pheno_tbl <- rownames_to_column(pData(msd16s), var = "ID") %>% as_tibble()
+pheno_tbl
+
+p_case_control = pheno_tbl %>% 
+  count(Type) %>% 
+  mutate(prop = n/sum(n))
+
+p_case <- with(p_case_control, prop[Type == "Case"])
+p_control <- with(p_case_control, prop[Type == "Control"])
+```
+- The feature information including cluster representative (e.g., OTUs) sequence can be accessed
+with the featureData and fData methods:
+```{r}
+featureData(msd16s)
+features <- fData(msd16s)
+```
+```{r}
+counts <- MRcounts(msd16s, norm = TRUE)
+dim(counts)
+```
+The raw or normalized counts matrix can be accessed with the MRcounts function. We get normalized counts. A normalization method avoids biases due to uneven sequencing depth. 
+
+```{r}
+otu_id <- rownames(counts)
+counts_tbl <- bind_cols(otu_id = otu_id, counts %>% as_tibble())
+counts_tbl
+```
+
+#### Filter data at OTU level
+- OTU was abundant (≥12 normalized counts per sample) in cases or controls; 
+```{r}
+control_to_select <- pheno_tbl %>% 
+  filter(Type == "Control") %>% 
+  dplyr::select(ID) %>% 
+  pull()
+
+con_sum <- counts_tbl %>%
+  dplyr::select(all_of(control_to_select)) %>% 
+  rowSums() 
+
+case_to_select <- pheno_tbl %>% 
+  filter(Type == "Case") %>% 
+  dplyr::select(ID) %>% 
+  pull()
+
+case_sum <- counts_tbl %>%
+  dplyr::select(all_of(case_to_select)) %>% 
+  rowSums() 
+
+counts_tbl_filt <- bind_cols(counts_tbl, 
+                             con_sum = con_sum/length(control_to_select), 
+                             case_sum = case_sum/length(case_to_select)) %>%
+  filter(con_sum >= 12 | case_sum >= 12) 
+
+```
+
+- OTU was prevalent (present in ≥10 cases and controls);
+```{r}
+otu_prevalence <- counts_tbl_filt %>%
+  dplyr:: select(-otu_id) %>%
+  mutate(across(everything(), ~ as.integer(. > 0))) %>%
+  rowSums()
+  
+counts_tbl <- bind_cols(counts_tbl_filt, otu_prevalence = otu_prevalence) %>%
+  filter(otu_prevalence >= 10) %>%
+  dplyr:: select(-con_sum, -case_sum, -otu_prevalence)
+
+```
+
+```{r}
+counts_tbl_t <- counts_tbl %>% 
+  pivot_longer(cols= -1) %>% 
+  pivot_wider(names_from = "otu_id",values_from = "value") %>%
+  rename(ID = name) %>% 
+  left_join(pheno_tbl, by = "ID") 
+```
+
+#### Filter data at Genus level
+- Aggregated counts at genus level
+
+```{r}
+genus_counts = aggTax(msd16s, lvl = "genus", out = "matrix", norm = T)
+genus_id <- rownames(genus_counts)
+genus_counts_tbl <- bind_cols(genus_id = genus_id, genus_counts %>% as_tibble())
+genus_counts_tbl
+```
+
+- Genus was abundant (≥12 normalized counts per sample) in cases or controls; 
+```{r}
+con_mean <- genus_counts_tbl %>%
+  dplyr:: select(all_of(control_to_select)) %>% 
+  rowMeans() 
+
+case_mean <- genus_counts_tbl %>%
+  dplyr:: select(all_of(case_to_select)) %>% 
+  rowMeans() 
+
+genus_tbl_filt <- bind_cols(genus_counts_tbl, 
+                             con_mean = con_mean, 
+                             case_mean = case_mean) %>%
+  filter(con_mean >= 12 | case_mean >= 12) 
+
+```
+
+- Genus was prevalent (present in ≥10 cases and controls);
+```{r}
+otu_prevalence <- genus_tbl_filt %>%
+  dplyr:: select(-genus_id) %>%
+  mutate(across(everything(), ~ as.integer(. > 0))) %>%
+  rowSums()
+  
+genus_tbl <- bind_cols(genus_tbl_filt, otu_prevalence = otu_prevalence) %>%
+  filter(otu_prevalence >= 10) %>%
+  dplyr:: select(-con_mean, -case_mean, -otu_prevalence) %>% 
+  filter(genus_id != "NA")
+
+rm(genus_tbl_filt)
+
+genusnames = genus_tbl$genus_id 
+
+```
+
+- Create a tidy table with pheno information
+```{r}
+genus_tbl_t <- genus_tbl %>% 
+  pivot_longer(cols= -1) %>% 
+  pivot_wider(names_from = "genus_id",values_from = "value") %>%
+  rename(ID = name) %>% 
+  left_join(pheno_tbl, by = "ID")  # %>%
+  #dplyr::select(-`NA`)
+```
+
+
+#### Filter data at Species level
+- Aggregated counts at genus level
+
+```{r}
+species_counts = aggTax(msd16s, lvl = "species", out = "matrix", norm = T)
+species_id <- rownames(species_counts)
+species_counts_tbl <- bind_cols(species_id = species_id, species_counts %>% as_tibble())
+species_counts_tbl
+```
+- Species was abundant (≥12 normalized counts per sample) in cases or controls; 
+```{r}
+con_mean <- species_counts_tbl %>%
+  dplyr:: select(all_of(control_to_select)) %>% 
+  rowMeans() 
+
+case_mean <- species_counts_tbl %>%
+  dplyr:: select(all_of(case_to_select)) %>% 
+  rowMeans() 
+
+species_tbl_filt <- bind_cols(species_counts_tbl, 
+                             con_mean = con_mean, 
+                             case_mean = case_mean) %>%
+  filter(con_mean >= 12 | case_mean >= 12) 
+
+```
+
+- Genus was prevalent (present in ≥10 cases and controls);
+```{r}
+otu_prevalence <- species_tbl_filt %>%
+  dplyr:: select(-species_id) %>%
+  mutate(across(everything(), ~ as.integer(. > 0))) %>%
+  rowSums()
+  
+species_tbl <- bind_cols(species_tbl_filt, otu_prevalence = otu_prevalence) %>%
+  filter(otu_prevalence >= 10) %>%
+  dplyr:: select(-con_mean, -case_mean, -otu_prevalence)
+
+rm(species_tbl_filt)
+speciesnames = species_tbl$species_id[-1*which(species_tbl$species_id == "NA")]
+```
+
+- Create a tidy table with pheno information
+```{r}
+species_tbl_t <- species_tbl %>% 
+  pivot_longer(cols= -1) %>% 
+  pivot_wider(names_from = "species_id",values_from = "value") %>%
+  rename(ID = name) %>% 
+  left_join(pheno_tbl, by = "ID") %>%
+  dplyr:: select(-`NA`)
+```
+
+
+### Differential abundance analysis
+#### Genus level
+- Quasipoisson regression model
+```{r}
+results_genus_qpoisson <- 
+  map_df(genusnames, function(response) {
+    model <- glm(as.formula(paste(response, "~ Type")), 
+                 data = genus_tbl_t, 
+                 family = quasipoisson)
+    tidy(model, conf.int = TRUE) %>%
+      # Add a column for the response variable
+      mutate(response_variable = response)
+    }) %>% 
+  filter(term == "TypeControl") %>% 
+  arrange(p.value) 
+
+results_genus_qpoisson %>% filter(p.value < 0.05/41) %>%
+  dplyr::select(response_variable, p.value) %>%
+  print(n = 20)
+```
+- Negative binomial regression model
+```{r}
+library(MASS)
+
+
+results_genus_nb2 <- 
+  map_df(genusnames, function(response) {
+    print(response)
+    model <- glm(as.formula(paste(response, "~ Type")), 
+                 family = negative.binomial(20),
+                 data = genus_tbl_t)
+    tidy(model, conf.int = TRUE) %>%
+      # Add a column for the response variable
+      mutate(response_variable = response)
+    }) %>% 
+  filter(term == "TypeControl") %>% 
+  arrange(p.value) 
+
+results_genus_nb2 %>% filter(p.value < 0.05/41) %>%
+  dplyr::select(response_variable, p.value) %>%
+  print(n = Inf)
+```
+
+#### Species level
+- Quasipoisson regression model
+```{r}
+results_species_qpoisson <- 
+  map_df(names(species_tbl_t)[2:102], function(response) {
+    model <- glm(as.formula(paste("`", response, "`", "~ Type", sep = "")), 
+                 data = species_tbl_t, 
+                 family = quasipoisson)
+    tidy(model, conf.int = TRUE) %>%
+      # Add a column for the response variable
+      mutate(response_variable = response)
+    }) %>% 
+  filter(term == "TypeControl") %>% 
+  arrange(p.value) 
+
+results_species_qpoisson %>% 
+  filter(p.value < 0.05/102) %>%
+  dplyr::select(response_variable, p.value) %>%
+  print(n = 20)
+```
+
+- Negative binomial regression model
+```{r}
+results_species_nb2 <- 
+  map_df(speciesnames, function(response) {
+    # print(response)
+    model <- glm(as.formula(paste("`", response, "`", "~ Type", sep = "")), 
+                 family = negative.binomial(20),
+                 data = species_tbl_t)
+    tidy(model, conf.int = TRUE) %>%
+      # Add a column for the response variable
+      mutate(response_variable = response)
+    }) %>% 
+  filter(term == "TypeControl") %>% 
+  arrange(p.value)
+```
+
+### Evaluate Type I Error rate
+- This section evaluates the Type I error rate of the models by simulating data under the null hypothesis of no association between the microbiome and the outcome variable.
+- We simulate binary labels 100 times using a Bernoulli distribution with a probability of 0.512 (estimated from the data) for each sample.
+- We evaluate the association between each genus and the outcome variable using different regression models, document the proportion of significant associations using threshold of 0.05 over 100 replicates (e.g., empirical type I error).
+- We repeat the same process for the species level data.
+- If the empirical type I error rate is close to the nominal type I error rate (0.05), then the model is considered to have good control over the Type I error rate.
+- If the empirical type I error rate is much lower than the nominal type I error rate, then the model is considered to be conservative.
+- If the empirical type I error rate is much higher than the nominal type I error rate, then the model is considered to be inflated (i.e., false positive rate is higher than expected).
+
+#### Genus level
+- Quasipoisson regression model
+```{r}
+# Set the number of columns 
+num_columns <- 100
+num_rows <- dim(genus_tbl_t)[1] 
+set.seed(10)
+
+# Generate the tibble with 100 columns of random normal values
+type1e <- function(genusname) {
+  sim_tbl <- tibble(
+    y = genus_tbl_t %>% dplyr::select(all_of(genusname)) %>% pull,
+    as_tibble(
+    matrix(sample(0:1, num_columns * num_rows, replace=T, prob=c(p_control, p_case)), 
+           nrow = num_rows, ncol = num_columns, 
+         dimnames = list(NULL, paste0("x", 1:num_columns)))))
+
+  results <- map_df(names(sim_tbl)[-1], 
+                  ~ tidy(glm(reformulate(.x, response = "y"), 
+                             data = sim_tbl,                              
+                             family = quasipoisson)), 
+                  .id = "variable") %>%
+              filter(term != "(Intercept)")
+  return(mean(results$p.value < 0.05))
+}
+
+type1e_tbl = tibble(genus_name = genusnames, 
+       etype_1_error = map_dbl(genusnames, type1e)) 
+median(type1e_tbl$etype_1_error)
+```
+
+- Negative binomial regression model
+```{r}
+# Set the number of columns 
+num_columns <- 100
+num_rows <- dim(genus_tbl_t)[1] 
+set.seed(10)
+
+# Generate the tibble with 100 columns of random normal values
+type1e <- function(genusname) {
+  sim_tbl <- tibble(
+    y = genus_tbl_t %>% dplyr::select(all_of(genusname)) %>% pull,
+    as_tibble(
+    matrix(sample(0:1, num_columns * num_rows, replace=T, prob=c(p_control, p_case)), 
+           nrow = num_rows, ncol = num_columns, 
+         dimnames = list(NULL, paste0("x", 1:num_columns)))))
+
+  results <- map_df(names(sim_tbl)[-1], 
+                  ~ tidy(glm(reformulate(.x, response = "y"), 
+                             data = sim_tbl, 
+                             family = negative.binomial(20),
+                             control = glm.control(maxit = 100))), 
+                  .id = "variable") %>%
+              filter(term != "(Intercept)")
+  return(mean(results$p.value < 0.05))
+}
+
+type1e_tbl = tibble(genus_name = genusnames, 
+       etype_1_error = map_dbl(genusnames, type1e)) 
+median(type1e_tbl$etype_1_error)
+```
+
+#### Species level
+- Quasipoisson regression model
+```{r}
+# Set the number of columns 
+num_columns <- 100
+num_rows <- 992 
+set.seed(10)
+
+# Generate the tibble with 100 columns of random normal values
+type1e <- function(speciesnames) {
+  sim_tbl <- tibble(
+    y = species_tbl_t %>% dplyr::select(all_of(speciesnames)) %>% pull,
+    as_tibble(
+    matrix(sample(0:1, num_columns * num_rows, replace=T, prob=c(p_control, p_case)), 
+          nrow = num_rows, ncol = num_columns, 
+         dimnames = list(NULL, paste0("x", 1:num_columns)))))
+
+  results <- map_df(names(sim_tbl)[-1], 
+                  ~ tidy(glm(reformulate(.x, response = "y"), 
+                             data = sim_tbl), family = quasipoisson), 
+                  .id = "variable") %>%
+              filter(term != "(Intercept)")
+  return(mean(results$p.value < 0.05))
+}
+
+type1e_tbl = tibble(species_name = names(species_tbl_t)[2:102], 
+       etype_1_error = map_dbl(names(species_tbl_t)[2:102], type1e))
+median(type1e_tbl$etype_1_error)
+```
+
+- Negative binomial regression model
+```{r}
+# Set the number of columns
+num_columns <- 100
+num_rows <- 992
+
+
+# Generate the tibble with 100 columns of random normal values
+type1e <- function(speciesname) {
+  sim_tbl <- tibble(
+    y = species_tbl_t %>% 
+      dplyr::select(all_of(speciesname)) %>% pull, 
+    as_tibble(
+    matrix(sample(0:1, num_columns * num_rows, replace=T, prob=c(p_control, p_case)),
+           nrow = num_rows, ncol = num_columns, 
+           dimnames = list(NULL, paste0("x", 1:num_columns)))))
+
+    results <- map_df(names(sim_tbl)[-1], 
+                 ~ tidy(glm(reformulate(.x, response = "y"), 
+                             data = sim_tbl, 
+                             family = negative.binomial(30),
+                             control = glm.control(maxit = 100))), 
+                  .id = "variable") %>%
+              filter(term != "(Intercept)")
+  return(mean(results$p.value < 0.05))
+}
+
+type1e_tbl = tibble(
+       species_name = speciesnames, 
+       etype_1_error = map_dbl(speciesnames, type1e))
+median(type1e_tbl$etype_1_error)
+```
+
+# Re-do midterm questions
+## Question 2 and 8
+## Optional: Question 4, 6, 9
