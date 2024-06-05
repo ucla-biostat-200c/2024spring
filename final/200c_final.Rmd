@@ -190,5 +190,7 @@ This question is adapted from Exercise 11.2 of ELMR (p251). Read the documentati
 
 ## Optional Extra Credit Problem* 
 
+[Midterm makeup question](https://ucla-biostat-200c.github.io/2024spring/hw/midterm-makeup.html)
+
 >> This problem is meant to offer another chance to demonstrate understanding of some of the material on the mid-term. If you choose to do this problem and your score is higher than your mid-term grade, then your mid-term grade will be reweighted to be `New Midterm Grade = .8*Old Midterm Grade + .2*Extra Credit Problem`
 
